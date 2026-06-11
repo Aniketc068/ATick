@@ -1,0 +1,47 @@
+# ATick public repo — the Rust backend, native build config, and the real secrets are NEVER published.
+
+# Rust backend (proprietary — never goes public)
+/src/
+/target/
+Cargo.toml
+Cargo.lock
+build.rs
+
+# native build config (keeps the public repo pure-Python)
+pyproject.toml
+
+# maintainer-only guide (reveals the native backend / release process)
+PUBLISHING.md
+
+# CI workflow + local private-build git dir (live only in the private build repo)
+/.github/
+/.gitpriv/
+
+# THE secrets: the license signing key (in tools/) and environment files — NEVER commit
+/tools/
+.env
+.env.*
+
+# keys/certs excluded by default, EXCEPT the public test DSC certificate + CA roots
+# (ABC12.pfx is a throwaway Capricorn eSign UAT test cert, password "ABC12", so users can try ATick)
+*.pem
+*.pfx
+*.p12
+*.key
+!/samples/ABC12.pfx
+!/samples/ABC12.pem
+!/samples/root_certificates/
+!/samples/root_certificates/*.pem
+
+# python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+/python/atick/*.so
+/python/atick/*.pyd
+
+# documentation build output
+/docs/_build/
+
+# scratch
+*.bak
