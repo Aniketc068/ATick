@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'PAdES levels · Python', description: 'PAdES levels, RFC-3161 timestamps, LTV (DSS) and PAdES-B-LTA document timestamps with ATick for Python.', alternates: { canonical: '/docs/python/pades/' } };
 
 export default function Page() {
   return (

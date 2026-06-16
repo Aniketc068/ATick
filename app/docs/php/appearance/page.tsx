@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Appearance · PHP', description: 'Customize the signature appearance in ATick for PHP — Adobe-style validity green tick, logo, text, colours and layout.', alternates: { canonical: '/docs/php/appearance/' } };
 
 export default function Page() {
   return (

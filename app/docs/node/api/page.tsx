@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'API reference · Node.js', description: 'Complete API reference for ATick for Node.js — every function, option and attribute.', alternates: { canonical: '/docs/node/api/' } };
 
 export default function Page() {
   return (

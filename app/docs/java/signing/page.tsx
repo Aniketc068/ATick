@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Signing methods · Java', description: 'Sign PDFs with ATick for Java — PFX/PKCS#12, PKCS#11 tokens / HSM, Windows store, single and multi-placement signatures.', alternates: { canonical: '/docs/java/signing/' } };
 
 export default function Page() {
   return (

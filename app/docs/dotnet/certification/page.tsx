@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Certification & field locking · .NET', description: 'DocMDP certification with ATick for .NET — no-changes (certify=1), form-filling and annotation levels, field locking.', alternates: { canonical: '/docs/dotnet/certification/' } };
 
 export default function Page() {
   return (

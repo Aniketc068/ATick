@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Quickstart · Node.js', description: 'Sign your first PDF with ATick for Node.js in a few lines — PAdES signature, timestamp and an Adobe-valid green-tick appearance.', alternates: { canonical: '/docs/node/quickstart/' } };
 
 export default function Page() {
   return (

@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Installation · Java', description: 'Install ATick for Java — supported platforms, package manager and requirements.', alternates: { canonical: '/docs/java/install/' } };
 
 export default function Page() {
   return (

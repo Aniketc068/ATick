@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Signing methods · Node.js', description: 'Sign PDFs with ATick for Node.js — PFX/PKCS#12, PKCS#11 tokens / HSM, Windows store, single and multi-placement signatures.', alternates: { canonical: '/docs/node/signing/' } };
 
 export default function Page() {
   return (

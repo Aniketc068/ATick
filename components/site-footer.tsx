@@ -17,9 +17,9 @@ const cols = [
     { href: "https://packagist.org/packages/aniketc068/atick", label: "Packagist", ext: true },
   ]},
   { title: "License", links: [
-    { href: "https://www.gnu.org/licenses/agpl-3.0.html", label: "AGPL-3.0 — free", ext: true },
-    { href: `mailto:${SUPPORT_EMAIL}?subject=ATick%20Commercial%20License`, label: "Commercial — paid", ext: true },
-    { href: "https://github.com/Aniketc068/ATick-Python/blob/main/LICENSING.md", label: "Licensing terms", ext: true },
+    { href: "/license/", label: "AGPL-3.0 — free" },
+    { href: "/license/", label: "Commercial — paid" },
+    { href: "/license/", label: "Licensing terms" },
   ]},
 ];
 
@@ -51,7 +51,7 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="container-x flex flex-col items-center justify-between gap-3 border-t border-white/[0.07] py-6 text-xs text-muted-foreground sm:flex-row">
-        <p>© 2026 Aniket Chaturvedi · Dual-licensed <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">AGPL-3.0</a> / Commercial</p>
+        <p>© 2026 Aniket Chaturvedi · <Link href="/license/" className="hover:text-foreground">Dual-licensed AGPL-3.0 / Commercial</Link></p>
         <p>Support: <a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-foreground">{SUPPORT_EMAIL}</a> · <span className="font-mono">v1.0.6</span></p>
       </div>
     </footer>

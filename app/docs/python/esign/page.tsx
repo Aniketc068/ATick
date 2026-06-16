@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Indian eSign (CCA) · Python', description: 'Deferred / remote-key and eSign signing with ATick for Python — prepare, hash, sign externally and embed.', alternates: { canonical: '/docs/python/esign/' } };
 
 export default function Page() {
   return (

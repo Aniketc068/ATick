@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'PAdES levels · .NET', description: 'PAdES levels, RFC-3161 timestamps, LTV (DSS) and PAdES-B-LTA document timestamps with ATick for .NET.', alternates: { canonical: '/docs/dotnet/pades/' } };
 
 export default function Page() {
   return (

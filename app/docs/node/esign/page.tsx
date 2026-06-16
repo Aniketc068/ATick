@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Indian eSign (CCA) · Node.js', description: 'Deferred / remote-key and eSign signing with ATick for Node.js — prepare, hash, sign externally and embed.', alternates: { canonical: '/docs/node/esign/' } };
 
 export default function Page() {
   return (

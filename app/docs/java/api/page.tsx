@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'API reference · Java', description: 'Complete API reference for ATick for Java — every function, option and attribute.', alternates: { canonical: '/docs/java/api/' } };
 
 export default function Page() {
   return (

@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Installation · PHP', description: 'Install ATick for PHP — supported platforms, package manager and requirements.', alternates: { canonical: '/docs/php/install/' } };
 
 export default function Page() {
   return (

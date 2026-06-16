@@ -14,3 +14,6 @@ npm-debug.log*
 # screenshots from local review (not part of the site)
 /v2-full.png
 /v3-full.png
+
+# build log
+build.log

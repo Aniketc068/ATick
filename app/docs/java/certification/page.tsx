@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Certification & field locking · Java', description: 'DocMDP certification with ATick for Java — no-changes (certify=1), form-filling and annotation levels, field locking.', alternates: { canonical: '/docs/java/certification/' } };
 
 export default function Page() {
   return (

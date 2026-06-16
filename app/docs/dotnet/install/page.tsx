@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Installation · .NET', description: 'Install ATick for .NET — supported platforms, package manager and requirements.', alternates: { canonical: '/docs/dotnet/install/' } };
 
 export default function Page() {
   return (

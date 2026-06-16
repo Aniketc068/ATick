@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Appearance · Java', description: 'Customize the signature appearance in ATick for Java — Adobe-style validity green tick, logo, text, colours and layout.', alternates: { canonical: '/docs/java/appearance/' } };
 
 export default function Page() {
   return (

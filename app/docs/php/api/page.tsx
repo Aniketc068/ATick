@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'API reference · PHP', description: 'Complete API reference for ATick for PHP — every function, option and attribute.', alternates: { canonical: '/docs/php/api/' } };
 
 export default function Page() {
   return (

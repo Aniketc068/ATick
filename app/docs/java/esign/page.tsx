@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Indian eSign (CCA) · Java', description: 'Deferred / remote-key and eSign signing with ATick for Java — prepare, hash, sign externally and embed.', alternates: { canonical: '/docs/java/esign/' } };
 
 export default function Page() {
   return (

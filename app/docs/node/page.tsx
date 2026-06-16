@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'ATick for Node.js · Node.js', description: 'Get started with ATick — standalone PDF digital signatures for Node.js: PAdES/CMS, RFC-3161 timestamps, LTV and an Adobe-valid green-tick signature appearance.', alternates: { canonical: '/docs/node/' } };
 
 export default function Page() {
   return (

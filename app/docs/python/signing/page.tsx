@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Signing methods · Python', description: 'Sign PDFs with ATick for Python — PFX/PKCS#12, PKCS#11 tokens / HSM, Windows store, single and multi-placement signatures.', alternates: { canonical: '/docs/python/signing/' } };
 
 export default function Page() {
   return (

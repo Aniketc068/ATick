@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Installation · Node.js', description: 'Install ATick for Node.js — supported platforms, package manager and requirements.', alternates: { canonical: '/docs/node/install/' } };
 
 export default function Page() {
   return (

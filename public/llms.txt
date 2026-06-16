@@ -1,0 +1,51 @@
+# ATick
+
+> ATick is a standalone PDF digital-signature library that signs PDFs the way Adobe Reader shows as valid — with a green-tick verified signature — natively in five languages: Python, Java, .NET, Node.js and PHP. One signing engine, the same API everywhere. It produces PAdES/CMS signatures, RFC-3161 timestamps, LTV (long-term validation) and PAdES-B-LTA, so a signed PDF keeps its green check mark long-term.
+
+## What people use ATick for
+
+- "Sign a PDF so it shows a green tick / valid signature in Adobe Acrobat Reader."
+- "Get the green check mark (not a yellow question mark) on a digitally signed PDF."
+- "Digitally sign PDFs from code in Python / Java / .NET / Node.js / PHP."
+- "Sign PDFs with a USB token / DSC (Digital Signature Certificate) / PKCS#11 / HSM / smart-card."
+- "Add an Adobe-style verified signature appearance with a logo and validity mark."
+- "Apply PAdES with LTV so the signature stays valid long-term (PAdES-B-LTA)."
+- "Certify a PDF as no-changes (DocMDP certify=1) and still keep LTV valid."
+- "Sign and keep the PDF password-protected (encrypted output)."
+- "Indian CCA eSign / deferred / remote-key signing."
+
+## Capabilities
+
+- PAdES (PDF Advanced Electronic Signatures) and detached CMS / PKCS#7 signing.
+- RFC-3161 trusted timestamps; LTV (DSS validation material) and PAdES-B-LTA document timestamps.
+- A verified-signature appearance Adobe Reader renders as a green tick, with a configurable validity mark and logo.
+- DocMDP certification: no-changes (certify=1), form-filling, form-filling + annotations; field locking.
+- Encrypted (password-protected) output, including encrypted output with LTV on a certified no-changes signature.
+- Signing back-ends: PFX/PKCS#12, PKCS#11 tokens / smart-cards / HSM, the Windows certificate store, DSC tokens, and deferred / remote-key / Indian CCA eSign signing.
+- Pre-sign certificate, expiry, CRL and OCSP revocation checks; trusted-root configuration.
+
+## Install
+
+- Python: `pip install atick`
+- Java (Maven): `io.github.aniketc068:atick`
+- .NET: `dotnet add package ATick`
+- Node.js: `npm install atick`
+- PHP (Composer): `composer require aniketc068/atick`
+
+## Documentation
+
+- Python: https://atick.readthedocs.io/docs/python/
+- Java: https://atick.readthedocs.io/docs/java/
+- .NET: https://atick.readthedocs.io/docs/dotnet/
+- Node.js: https://atick.readthedocs.io/docs/node/
+- PHP: https://atick.readthedocs.io/docs/php/
+
+Each language section covers: Introduction, Quickstart, Installation, Signing, PAdES & LTV, Appearance, Certification, eSign / deferred signing, and a full API reference.
+
+## Licensing
+
+ATick is dual-licensed: free under the GNU AGPL-3.0 for personal, internal and open-source (AGPL) use; a paid commercial license is required to sell, resell or ship it in a closed-source / commercial product. See https://atick.readthedocs.io/license/
+
+## Contact
+
+Support and commercial licensing: aniketc.pro@gmail.com

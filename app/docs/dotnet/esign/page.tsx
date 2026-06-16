@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Indian eSign (CCA) · .NET', description: 'Deferred / remote-key and eSign signing with ATick for .NET — prepare, hash, sign externally and embed.', alternates: { canonical: '/docs/dotnet/esign/' } };
 
 export default function Page() {
   return (

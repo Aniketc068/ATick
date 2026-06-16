@@ -1,5 +1,7 @@
 import { DocsShell } from "@/components/docs-shell";
 import { Code } from "@/components/code";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: 'Certification & field locking · PHP', description: 'DocMDP certification with ATick for PHP — no-changes (certify=1), form-filling and annotation levels, field locking.', alternates: { canonical: '/docs/php/certification/' } };
 
 export default function Page() {
   return (
