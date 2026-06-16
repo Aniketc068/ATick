@@ -17,7 +17,7 @@ const pdf = fs.readFileSync("doc.pdf");
 const pfx = fs.readFileSync("my.pfx");
 
 const signed = atick.signPfx(pdf, pfx, JSON.stringify({
-  cn: "Aniket Chaturvedi",   // common name (shown bold after "Digitally Signed by:")
+  cn: "Axonate Tech",   // common name (shown bold after "Digitally Signed by:")
   org: "Acme Corp",          // organisation line
   reason: "Approved",        // "Reason: …"
   location: "New Delhi",     // "Location: …"
@@ -90,8 +90,8 @@ atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: true, mark_gr
 
       <h2>Distinguished name</h2>
       <Code lang="node" file="dn.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({
-  cn: "Aniket Chaturvedi",
-  dn: "CN=Aniket Chaturvedi, O=Personal, C=IN",
+  cn: "Axonate Tech",
+  dn: "CN=Axonate Tech, O=Personal, C=IN",
 }));`} />
       <p>The DN is shown directly under the &quot;Digitally Signed by:&quot; line.</p>
 
@@ -100,7 +100,7 @@ atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: true, mark_gr
       Inside <code>body</code>, <code>\n</code> starts a new line and <code>*word*</code> makes that run
       <strong>bold</strong>:</p>
       <Code lang="node" file="body.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({
-  body: "*APPROVED*\\nReviewed by: *Aniket Chaturvedi*\\nThis document is *legally binding*.",
+  body: "*APPROVED*\\nReviewed by: *Axonate Tech*\\nThis document is *legally binding*.",
 }));`} />
       <blockquote>In a JavaScript string literal, <code>\n</code> is a real newline character.
       <code>JSON.stringify</code> then encodes it correctly inside the JSON, and ATick reads it as a

@@ -15,7 +15,7 @@ export default function Page() {
       <Code lang="php" file="sign.php" code={`use Aniketc068\\ATick\\Atick;
 
 $signed = Atick::signPfx($pdf, $pfx, [
-    'password' => '••••', 'cn' => 'Aniket Chaturvedi',
+    'password' => '••••', 'cn' => 'Axonate Tech',
     'reason' => 'Approved', 'page' => 1, 'rect' => [300, 55, 575, 175],
     'pades' => true, 'timestamp' => true, 'ltv' => true,
 ]);`} />

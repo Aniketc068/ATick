@@ -15,7 +15,7 @@ export default function Page() {
       <Code lang="java" file="Sign.java" code={`import io.github.aniketc068.atick.Atick;
 
 byte[] signed = Atick.signPfx(pdf, pfx,
-    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket Chaturvedi\\","
+    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\","
   + "\\"reason\\":\\"Approved\\",\\"page\\":1,\\"rect\\":[300,55,575,175],"
   + "\\"pades\\":true,\\"timestamp\\":true,\\"ltv\\":true}");`} />
       <p><a href="/docs/java/quickstart/">Quickstart →</a></p>

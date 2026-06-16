@@ -19,7 +19,7 @@ public class Sign {
         byte[] pfx = Files.readAllBytes(Paths.get("my.pfx"));
 
         byte[] signed = Atick.signPfx(pdf, pfx,
-            "{\\"cn\\":\\"Aniket Chaturvedi\\","   // common name (shown bold after "Digitally Signed by:")
+            "{\\"cn\\":\\"Axonate Tech\\","   // common name (shown bold after "Digitally Signed by:")
           + "\\"org\\":\\"Acme Corp\\","            // organisation line
           + "\\"reason\\":\\"Approved\\","          // "Reason: …"
           + "\\"location\\":\\"New Delhi\\","       // "Location: …"
@@ -100,7 +100,7 @@ Atick.signPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_gr
 
       <h2>Distinguished name</h2>
       <Code lang="java" file="Dn.java" code={`Atick.signPfx(pdf, pfx,
-    "{\\"cn\\":\\"Aniket Chaturvedi\\",\\"dn\\":\\"CN=Aniket Chaturvedi, O=Personal, C=IN\\"}");`} />
+    "{\\"cn\\":\\"Axonate Tech\\",\\"dn\\":\\"CN=Axonate Tech, O=Personal, C=IN\\"}");`} />
       <p>The DN is shown directly under the &quot;Digitally Signed by:&quot; line.</p>
 
       <h2>Custom-text-only appearance</h2>
@@ -109,7 +109,7 @@ Atick.signPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_gr
       run <strong>bold</strong>. Because the value lives in a JSON string in Java source, escape each
       line break as <code>\\n</code>:</p>
       <Code lang="java" file="Body.java" code={`Atick.signPfx(pdf, pfx,
-    "{\\"body\\":\\"*APPROVED*\\\\nReviewed by: *Aniket Chaturvedi*\\\\nThis document is *legally binding*.\\"}");`} />
+    "{\\"body\\":\\"*APPROVED*\\\\nReviewed by: *Axonate Tech*\\\\nThis document is *legally binding*.\\"}");`} />
       <blockquote>In Java source <code>\\n</code> produces the two characters <code>\n</code> in the
       JSON string, which ATick reads as a line break. A literal Java newline would break the
       JSON.</blockquote>

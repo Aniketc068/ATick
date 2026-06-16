@@ -12,7 +12,7 @@ const LANGS = [
 signed = atick.sign_pfx(
     open("doc.pdf", "rb").read(),
     pfx=open("my.pfx", "rb").read(), password="••••",
-    style=atick.Style(cn="Aniket Chaturvedi", reason="Approved"),
+    style=atick.Style(cn="Axonate Tech", reason="Approved"),
     placements=[(1, (300, 55, 575, 175))],
     pades=True, timestamp=True, ltv=True,   # PAdES-B-LT
 )
@@ -21,21 +21,21 @@ open("signed.pdf", "wb").write(signed)` },
     code: `import io.github.aniketc068.atick.Atick;
 
 byte[] signed = Atick.signPfx(pdf, pfx,
-    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket Chaturvedi\\","
+    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\","
   + "\\"reason\\":\\"Approved\\",\\"page\\":1,\\"rect\\":[300,55,575,175],"
   + "\\"pades\\":true,\\"timestamp\\":true,\\"ltv\\":true}");` },
   { id: "dotnet", name: ".NET", reg: "NuGet", file: "Sign.cs", install: "dotnet add package ATick",
     code: `using Aniketc068.ATick;
 
 byte[] signed = Atick.SignPfx(pdf, pfx,
-    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket Chaturvedi\\"," +
+    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\"," +
     "\\"reason\\":\\"Approved\\",\\"page\\":1,\\"rect\\":[300,55,575,175]," +
     "\\"pades\\":true,\\"timestamp\\":true,\\"ltv\\":true}");` },
   { id: "node", name: "Node.js", reg: "npm", file: "sign.js", install: "npm install atick",
     code: `const atick = require("atick");
 
 const signed = atick.signPfx(pdf, pfx, JSON.stringify({
-  password: "••••", cn: "Aniket Chaturvedi", reason: "Approved",
+  password: "••••", cn: "Axonate Tech", reason: "Approved",
   page: 1, rect: [300, 55, 575, 175],
   pades: true, timestamp: true, ltv: true,   // PAdES-B-LT
 }));` },
@@ -43,7 +43,7 @@ const signed = atick.signPfx(pdf, pfx, JSON.stringify({
     code: `use Aniketc068\\ATick\\Atick;
 
 $signed = Atick::signPfx($pdf, $pfx, [
-    'password' => '••••', 'cn' => 'Aniket Chaturvedi',
+    'password' => '••••', 'cn' => 'Axonate Tech',
     'reason' => 'Approved', 'page' => 1, 'rect' => [300, 55, 575, 175],
     'pades' => true, 'timestamp' => true, 'ltv' => true,
 ]);` },

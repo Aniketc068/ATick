@@ -18,7 +18,7 @@ export default function Page() {
 signed = atick.sign_pfx(
     open("doc.pdf", "rb").read(),
     pfx=open("my.pfx", "rb").read(), password="••••",
-    style=atick.Style(cn="Aniket Chaturvedi", reason="Approved"),
+    style=atick.Style(cn="Axonate Tech", reason="Approved"),
     placements=[(1, (300, 55, 575, 175))],
     pades=True, timestamp=True, ltv=True,   # PAdES-B-LT
 )

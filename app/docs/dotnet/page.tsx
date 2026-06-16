@@ -15,7 +15,7 @@ export default function Page() {
       <Code lang="dotnet" file="Sign.cs" code={`using Aniketc068.ATick;
 
 byte[] signed = Atick.SignPfx(pdf, pfx,
-    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket Chaturvedi\\"," +
+    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\"," +
     "\\"reason\\":\\"Approved\\",\\"page\\":1,\\"rect\\":[300,55,575,175]," +
     "\\"pades\\":true,\\"timestamp\\":true,\\"ltv\\":true}");`} />
       <p><a href="/docs/dotnet/quickstart/">Quickstart →</a></p>

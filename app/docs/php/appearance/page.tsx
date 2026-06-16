@@ -17,7 +17,7 @@ $pdf = file_get_contents("doc.pdf");
 $pfx = file_get_contents("my.pfx");
 
 $signed = Atick::signPfx($pdf, $pfx, [
-    "cn"         => "Aniket Chaturvedi",   // common name (shown bold after "Digitally Signed by:")
+    "cn"         => "Axonate Tech",   // common name (shown bold after "Digitally Signed by:")
     "org"        => "Acme Corp",           // organisation line
     "reason"     => "Approved",            // "Reason: …"
     "location"   => "New Delhi",           // "Location: …"
@@ -89,8 +89,8 @@ Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => true, "mark_gradie
 
       <h2>Distinguished name</h2>
       <Code lang="php" file="dn.php" code={`Atick::signPfx($pdf, $pfx, [
-    "cn" => "Aniket Chaturvedi",
-    "dn" => "CN=Aniket Chaturvedi, O=Personal, C=IN",
+    "cn" => "Axonate Tech",
+    "dn" => "CN=Axonate Tech, O=Personal, C=IN",
 ]);`} />
       <p>The DN is shown directly under the &quot;Digitally Signed by:&quot; line.</p>
 
@@ -98,7 +98,7 @@ Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => true, "mark_gradie
       <p>Show <strong>only</strong> your own text — no &quot;Signed by&quot;, no date, no CN structure. Inside <code>body</code>, <code>\n</code> starts a
       new line and <code>*word*</code> makes that run <strong>bold</strong>:</p>
       <Code lang="php" file="body.php" code={`Atick::signPfx($pdf, $pfx, [
-    "body" => "*APPROVED*\\nReviewed by: *Aniket Chaturvedi*\\nThis document is *legally binding*.",
+    "body" => "*APPROVED*\\nReviewed by: *Axonate Tech*\\nThis document is *legally binding*.",
 ]);`} />
       <blockquote>In a PHP <strong>double-quoted</strong> string, <code>\n</code> is a real newline character — use double quotes for <code>body</code>
       (single-quoted strings leave <code>\n</code> literal). ATick reads each newline as a line break.</blockquote>

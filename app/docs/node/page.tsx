@@ -15,7 +15,7 @@ export default function Page() {
       <Code lang="node" file="sign.js" code={`const atick = require("atick");
 
 const signed = atick.signPfx(pdf, pfx, JSON.stringify({
-  password: "••••", cn: "Aniket Chaturvedi", reason: "Approved",
+  password: "••••", cn: "Axonate Tech", reason: "Approved",
   page: 1, rect: [300, 55, 575, 175],
   pades: true, timestamp: true, ltv: true,   // PAdES-B-LT
 }));`} />

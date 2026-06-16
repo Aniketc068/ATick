@@ -12,7 +12,7 @@ export default function Page() {
       the ATick logo on the left, the signer details on the right, and the validity mark.</p>
 
       <Code lang="python" file="style.py" code={`atick.Style(
-    cn="Aniket Chaturvedi",          # common name (shown bold after "Digitally Signed by:")
+    cn="Axonate Tech",          # common name (shown bold after "Digitally Signed by:")
     org="Acme Corp",                  # organisation line
     reason="Approved",                # "Reason: ..."
     location="New Delhi",             # "Location: ..."
@@ -79,13 +79,13 @@ atick.Style(cn="...", mark_color=(255, 140, 0))        # RGB 0-255 (or 0-1 float
 atick.Style(cn="...", mark_gradient=["red", "orange", "yellow"])   # axial gradient`} />
 
       <h2>Distinguished name</h2>
-      <Code lang="python" file="dn.py" code={`atick.Style(cn="Aniket Chaturvedi", dn="CN=Aniket Chaturvedi, O=Personal, C=IN")`} />
+      <Code lang="python" file="dn.py" code={`atick.Style(cn="Axonate Tech", dn="CN=Axonate Tech, O=Personal, C=IN")`} />
       <p>The DN is shown directly under the “Digitally Signed by:” line.</p>
 
       <h2>Custom-text-only appearance</h2>
       <p>Show <strong>only</strong> your own text — no “Signed by”, no date, no CN structure.
       <code>\\n</code> starts a new line; <code>*word*</code> makes that run <strong>bold</strong>.</p>
-      <Code lang="python" file="custom_body.py" code={`atick.Style(body="*APPROVED*\\nReviewed by: *Aniket Chaturvedi*\\nThis document is *legally binding*.")`} />
+      <Code lang="python" file="custom_body.py" code={`atick.Style(body="*APPROVED*\\nReviewed by: *Axonate Tech*\\nThis document is *legally binding*.")`} />
 
       <h2>Invisible signature</h2>
       <p>A cryptographically valid signature that draws nothing on the page:</p>
