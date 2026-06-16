@@ -1,0 +1,16 @@
+# dependencies
+/node_modules
+# next.js
+/.next
+/out
+# misc
+.DS_Store
+*.pem
+# debug / local
+npm-debug.log*
+.playwright-mcp/
+*.png
+!public/**/*.png
+# screenshots from local review (not part of the site)
+/v2-full.png
+/v3-full.png

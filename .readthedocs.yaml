@@ -1,0 +1,13 @@
+# Read the Docs — build the ATick Next.js static site and serve its export.
+# One unified site for all five ATick libraries (Python, Java, .NET, Node.js, PHP).
+version: 2
+
+build:
+  os: ubuntu-24.04
+  tools:
+    nodejs: "20"
+  commands:
+    - npm ci
+    - npm run build
+    - mkdir -p "$READTHEDOCS_OUTPUT/html"
+    - cp -r out/. "$READTHEDOCS_OUTPUT/html/"
