@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { siPython, siOpenjdk, siDotnet, siNodedotjs, siPhp } from "simple-icons";
-import { Logo } from "@/components/logo";
 
 const LINKS = [
   { href: "/docs/python/", label: "Docs" },
@@ -48,9 +47,6 @@ export function MobileMenu() {
             className="fixed inset-0 top-16 z-40 bg-black/60 backdrop-blur-sm"
           />
           <div className="fixed inset-x-0 top-16 z-50 max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-white/[0.08] bg-[hsl(240_6%_6%)] px-5 py-5">
-            <Link href="/" onClick={() => setOpen(false)} aria-label="ATick — home" className="mb-4 inline-block">
-              <Logo className="text-2xl" />
-            </Link>
             <nav className="flex flex-col gap-1">
               {LINKS.map((l) => (
                 <Link key={l.href} href={l.href} onClick={() => setOpen(false)}

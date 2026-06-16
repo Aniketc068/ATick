@@ -91,8 +91,8 @@ export default async function Home() {
         word1="Verified"
         word2="signatures."
         description="The standalone PDF digital-signature library — PAdES & CMS signing, RFC-3161 timestamps, long-term validation and a green-tick appearance Adobe shows as valid. One engine, five languages."
-        primaryCta="Read the docs"
-        primaryCtaMobile="Docs"
+        primaryCta="Get started"
+        primaryCtaMobile="Get started"
         primaryHref="/docs/python/"
         secondaryCta="View on GitHub"
         secondaryCtaMobile="GitHub"
@@ -161,7 +161,7 @@ export default async function Home() {
               <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Ship valid PDF signatures today</h2>
               <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Install in your language, sign your first document in under a minute. Free under AGPL-3.0.</p>
               <div className="mt-9 flex flex-wrap justify-center gap-3">
-                <a href="/docs/python/" className="btn-white h-11">Read the docs →</a>
+                <a href="/docs/python/" className="btn-white h-11">Get started →</a>
                 <a href="https://github.com/Aniketc068" target="_blank" rel="noopener noreferrer" className="btn-glass h-11">Star on GitHub</a>
               </div>
             </div>
