@@ -35,14 +35,8 @@ export const metadata: Metadata = {
   ],
   category: "technology",
   alternates: { canonical: "/" },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png", sizes: "256x256" },
-    ],
-    shortcut: ["/favicon.ico"],
-    apple: [{ url: "/favicon.png" }],
-  },
+  // icons are provided by the app/ convention (app/favicon.ico, app/icon.png,
+  // app/apple-icon.png) — Next emits hashed, cache-busted <link> tags automatically.
   openGraph: {
     type: "website",
     siteName: "ATick",
