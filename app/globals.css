@@ -82,6 +82,14 @@
   }
 }
 
+/* Docs sidebar: collapsible <details> on mobile (content-first), always-open sidebar on desktop. */
+.doc-summary::-webkit-details-marker { display: none; }
+.docnav[open] .doc-chevron { transform: rotate(180deg); }
+@media (min-width: 1024px) {
+  .docnav > .doc-summary { display: none !important; }
+  .docnav > .doc-navbody { display: block !important; }
+}
+
 /* Completely hide the Read the Docs addons flyout (the bottom-right
    "On Read the Docs / Builds / Search / Hosted by Read the Docs" box),
    its injected notifications, and the EthicalAds placement — independent

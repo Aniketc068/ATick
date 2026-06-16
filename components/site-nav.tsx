@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { RepoMenu } from "@/components/repo-menu";
+import { MobileMenu } from "@/components/mobile-menu";
 
 export function SiteNav() {
   const links = [
@@ -20,11 +21,12 @@ export function SiteNav() {
             <Link key={l.href} href={l.href} className="transition-colors hover:text-foreground">{l.label}</Link>
           ))}
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div className="hidden sm:block"><RepoMenu /></div>
-          <Link href="/docs/python/" className="inline-flex h-9 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]">
+          <Link href="/docs/python/" className="hidden h-9 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] md:inline-flex">
             Get started
           </Link>
+          <MobileMenu />
         </div>
       </nav>
     </header>
