@@ -11,6 +11,9 @@ npm-debug.log*
 .playwright-mcp/
 *.png
 !public/**/*.png
+# Next.js app-dir icon files must be tracked (favicon generation)
+!app/icon.png
+!app/apple-icon.png
 # screenshots from local review (not part of the site)
 /v2-full.png
 /v3-full.png

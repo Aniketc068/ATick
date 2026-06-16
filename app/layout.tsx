@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   title: { default: TITLE, template: "%s — ATick" },
   description: DESC,
   applicationName: "ATick",
-  authors: [{ name: "Aniket Chaturvedi" }],
-  creator: "Aniket Chaturvedi",
-  publisher: "Aniket Chaturvedi",
+  authors: [{ name: "Axonate Tech", url: "https://axonatetech.com" }],
+  creator: "Axonate Tech",
+  publisher: "Axonate Tech",
   keywords: [
     // high-intent Adobe / green-tick searches
     "sign PDF green tick valid in Adobe", "PDF digital signature green tick",
@@ -68,7 +68,8 @@ const JSON_LD = {
       description: DESC,
       url: SITE,
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      author: { "@type": "Person", name: "Aniket Chaturvedi" },
+      author: { "@type": "Organization", name: "Axonate Tech", url: "https://axonatetech.com" },
+      publisher: { "@type": "Organization", name: "Axonate Tech", url: "https://axonatetech.com" },
       programmingLanguage: ["Python", "Java", ".NET", "Node.js", "PHP"],
       license: `${SITE}/license/`,
     },
@@ -78,6 +79,14 @@ const JSON_LD = {
       url: SITE,
       description: DESC,
       inLanguage: "en",
+      publisher: { "@type": "Organization", name: "Axonate Tech", url: "https://axonatetech.com" },
+    },
+    {
+      "@type": "Organization",
+      name: "Axonate Tech",
+      url: "https://axonatetech.com",
+      email: "info@axonatetech.com",
+      sameAs: ["https://www.linkedin.com/company/axonate-tech/"],
     },
   ],
 };

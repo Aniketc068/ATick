@@ -4,7 +4,7 @@ import { Check, Mail } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 
-const SUPPORT_EMAIL = "aniketc.pro@gmail.com";
+const SUPPORT_EMAIL = "info@axonatetech.com";
 
 export const metadata: Metadata = {
   title: "Licensing",
@@ -40,7 +40,7 @@ const tiers = [
       "Begin shipping only after the fee is paid and your license is issued",
       "Pricing per product / per seat / per revenue tier",
     ],
-    cta: { label: "Request a quote", href: `mailto:${SUPPORT_EMAIL}?subject=ATick%20Commercial%20License`, ext: true },
+    cta: { label: "Commercial license", href: "/license/commercial/", ext: false },
   },
 ];
 

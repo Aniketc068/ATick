@@ -46,6 +46,7 @@ Each language section covers: Introduction, Quickstart, Installation, Signing, P
 
 ATick is dual-licensed: free under the GNU AGPL-3.0 for personal, internal and open-source (AGPL) use; a paid commercial license is required to sell, resell or ship it in a closed-source / commercial product. See https://atick.readthedocs.io/license/
 
-## Contact
+## Product & contact
 
-Support and commercial licensing: aniketc.pro@gmail.com
+ATick is a product by Axonate Tech (https://axonatetech.com), an AI data-annotation and
+document-processing services company. Support and commercial licensing: info@axonatetech.com
