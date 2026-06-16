@@ -105,6 +105,44 @@ Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_gr
 
       <p>Use <code>mark_scale</code> to resize the mark relative to the appearance box.</p>
 
+      <h2>Fine-tuning the layout</h2>
+      <p>For pixel-level control over where the mark and the text sit, use these nudge keys. They are
+      all optional — the defaults already produce a balanced box.</p>
+
+      <Code lang="dotnet" file="FineTune.cs" code={`Atick.SignPfx(pdf, pfx,
+    "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,"
+  + "\\"top_reserve\\":0.32,"   // reserve the top 32% of the box for the logo / mark
+  + "\\"mark_scale\\":1.1,"     // make the mark 10% larger
+  + "\\"mark_dx\\":4,"          // nudge the mark 4 pt to the right
+  + "\\"mark_dy\\":-2,"         // nudge the mark 2 pt down
+  + "\\"text_dx\\":6,"          // nudge the signer text 6 pt to the right
+  + "\\"text_top\\":0.40}");    // start the text block 40% down from the top`} />
+
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Effect</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>top_reserve</code></td><td>fraction of the box height (e.g. <code>0.32</code>) reserved at the top for the logo / mark</td></tr>
+          <tr><td><code>mark_scale</code></td><td>scale factor for the mark size</td></tr>
+          <tr><td><code>mark_dx</code></td><td>nudge the mark horizontally in points (positive = right)</td></tr>
+          <tr><td><code>mark_dy</code></td><td>nudge the mark vertically in points (positive = up)</td></tr>
+          <tr><td><code>text_dx</code></td><td>nudge the signer text horizontally in points (positive = right)</td></tr>
+          <tr><td><code>text_top</code></td><td>vertical start of the text block, as a fraction of box height from the top</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Border styling</h2>
+      <p>Turn the border on with <code>&quot;border&quot;:true</code>, then set its colour and width.
+      <code>border_color</code> takes an <code>[r, g, b]</code> array and <code>border_width</code> is
+      the line width in points:</p>
+
+      <Code lang="dotnet" file="Border.cs" code={`Atick.SignPfx(pdf, pfx,
+    "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,"
+  + "\\"border\\":true,"
+  + "\\"border_color\\":[20,80,160],"  // RGB border colour
+  + "\\"border_width\\":1.0}");        // line width in points`} />
+
       <h2>Distinguished name</h2>
       <Code lang="dotnet" file="Dn.cs" code={`Atick.SignPfx(pdf, pfx,
     "{\\"cn\\":\\"Aniket Chaturvedi\\",\\"dn\\":\\"CN=Aniket Chaturvedi, O=Personal, C=IN\\"}");`} />
@@ -154,8 +192,14 @@ Atick.SignPfx(pdf, pfx,
           <tr><td><code>text_color</code></td><td>colour of the text</td></tr>
           <tr><td><code>bg_color</code></td><td>background fill of the box</td></tr>
           <tr><td><code>border</code></td><td>draw a border around the box</td></tr>
+          <tr><td><code>border_color</code></td><td>border colour as <code>[r, g, b]</code> (needs <code>border</code>)</td></tr>
+          <tr><td><code>border_width</code></td><td>border line width in points, e.g. <code>1.0</code> (needs <code>border</code>)</td></tr>
           <tr><td><code>width</code>, <code>height</code></td><td>the box size</td></tr>
           <tr><td><code>mark_scale</code></td><td>scale factor for the validity mark</td></tr>
+          <tr><td><code>mark_dx</code>, <code>mark_dy</code></td><td>nudge the mark in points (x right, y up)</td></tr>
+          <tr><td><code>text_dx</code></td><td>nudge the signer text horizontally in points</td></tr>
+          <tr><td><code>text_top</code></td><td>vertical start of the text block (fraction from top)</td></tr>
+          <tr><td><code>top_reserve</code></td><td>fraction of box height reserved at the top for the logo / mark</td></tr>
         </tbody>
       </table>
 

@@ -89,9 +89,16 @@ try {
       <ul>
         <li><strong>$data</strong> — the bytes to sign (typically <code>$bytesToSign</code> from <code>prepare</code>) as a binary string.</li>
         <li><strong>$pfx</strong> — the credential bytes (binary string).</li>
-        <li><strong>$options</strong> — <code>password</code>, <code>hash_algo</code>, <code>pades</code>, <code>timestamp</code>, <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>.</li>
+        <li><strong>$options</strong> — <code>password</code>, <code>hash_algo</code>, <code>pades</code>, <code>timestamp</code>, <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>, <code>revocation</code>.</li>
         <li><strong>returns</strong> — the detached CMS as a binary string.</li>
       </ul>
+      <p>Set <code>&apos;revocation&apos; =&gt; true</code> to embed a <code>RevocationInfoArchival</code> attribute (the signer chain&apos;s
+      CRL/OCSP responses) inside the CMS itself, so the signature carries its own revocation evidence:</p>
+      <Code lang="php" file="api.php" code={`$cms = Atick::cmsPfx($bytesToSign, $pfx, [
+    "password"   => "secret",
+    "pades"      => true,
+    "revocation" => true,   // embed RevocationInfoArchival in the CMS
+]);`} />
       <Code lang="php" file="api.php" code={`Atick::embed(string $prepared, string $cms): string`} />
       <p>Embed a detached CMS / PKCS#7 into a prepared PDF. Returns the signed PDF bytes.</p>
       <ul>
@@ -123,6 +130,13 @@ $signed = Atick::embed($prepared, $cms);`} />
         <li><strong>$options</strong> — <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>, <code>contents_size</code>.</li>
         <li><strong>returns</strong> — the timestamped PDF as a binary string.</li>
       </ul>
+      <p>This also writes the DSS (Document Security Store) for the timestamp&apos;s own certificate chain, so the
+      TSA chain is validatable long after signing. Pair it with a <code>&apos;revocation&apos; =&gt; true</code> CMS to carry
+      revocation evidence end-to-end:</p>
+      <Code lang="php" file="api.php" code={`// CMS carries its own revocation info; the doc timestamp adds the DSS for the timestamp chain
+$cms      = Atick::cmsPfx($bytesToSign, $pfx, ["password" => "secret", "pades" => true, "revocation" => true]);
+$signed   = Atick::embed($prepared, $cms);
+$archived = Atick::addDocTimestamp($signed, ["tsa_url" => "http://timestamp.example/tsa", "ltv" => true]);`} />
 
       <h2>Documents &amp; utilities</h2>
       <Code lang="php" file="api.php" code={`Atick::setMetadata(string $pdf, array|string $options = []): string`} />
@@ -185,6 +199,8 @@ $signed = Atick::embed($prepared, $cms);`} />
           <tr><td><code>mark_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Colour of the mark.</td></tr>
           <tr><td><code>mark_gradient</code></td><td>array of colours</td><td>Gradient fill for the mark.</td></tr>
           <tr><td><code>mark_scale</code></td><td>number</td><td>Scale factor for the mark size.</td></tr>
+          <tr><td><code>mark_dx</code></td><td>number</td><td>Nudge the mark horizontally (PDF points; negative = left).</td></tr>
+          <tr><td><code>mark_dy</code></td><td>number</td><td>Nudge the mark vertically (PDF points; negative = up).</td></tr>
         </tbody>
       </table>
 
@@ -195,9 +211,14 @@ $signed = Atick::embed($prepared, $cms);`} />
           <tr><td><code>text_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Text colour.</td></tr>
           <tr><td><code>bg_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Background colour of the appearance.</td></tr>
           <tr><td><code>border</code></td><td>bool</td><td>Draw a border around the appearance.</td></tr>
+          <tr><td><code>border_color</code></td><td><code>[r, g, b]</code></td><td>Border colour (with <code>border =&gt; true</code>).</td></tr>
+          <tr><td><code>border_width</code></td><td>number</td><td>Border line width in PDF points (default <code>1.0</code>).</td></tr>
           <tr><td><code>font_size</code></td><td>number</td><td>Font size of the appearance text.</td></tr>
           <tr><td><code>width</code></td><td>number</td><td>Appearance width.</td></tr>
           <tr><td><code>height</code></td><td>number</td><td>Appearance height.</td></tr>
+          <tr><td><code>top_reserve</code></td><td>number (0–1)</td><td>Fraction of the box height reserved at the top for the logo / mark.</td></tr>
+          <tr><td><code>text_dx</code></td><td>number</td><td>Nudge the signer text horizontally (PDF points).</td></tr>
+          <tr><td><code>text_top</code></td><td>number</td><td>Vertical start of the text block (fraction of box height).</td></tr>
         </tbody>
       </table>
 
@@ -223,6 +244,7 @@ $signed = Atick::embed($prepared, $cms);`} />
           <tr><td><code>tsa_url</code></td><td>string</td><td>Timestamp authority URL.</td></tr>
           <tr><td><code>tsa_auth</code></td><td><code>[&quot;user&quot;, &quot;pass&quot;]</code></td><td>Basic-auth credentials for the TSA.</td></tr>
           <tr><td><code>ltv</code></td><td>bool</td><td>Add long-term validation material (DSS).</td></tr>
+          <tr><td><code>revocation</code></td><td>bool</td><td>Embed <code>RevocationInfoArchival</code> (CRL/OCSP) inside the CMS (used by <code>cmsPfx</code>).</td></tr>
           <tr><td><code>lta</code></td><td>bool</td><td>Add an archive DocTimeStamp (PAdES-B-LTA).</td></tr>
           <tr><td><code>contents_size</code></td><td>int</td><td>Size of the signature <code>/Contents</code> placeholder (default <code>16384</code>).</td></tr>
         </tbody>
@@ -245,8 +267,18 @@ $signed = Atick::embed($prepared, $cms);`} />
           <tr><td><code>verify_expiry</code></td><td>bool</td><td>Check certificate validity dates.</td></tr>
           <tr><td><code>verify_crl</code></td><td>bool</td><td>Check the CRL.</td></tr>
           <tr><td><code>verify_ocsp</code></td><td>bool</td><td>Check OCSP.</td></tr>
+          <tr><td><code>trusted_roots</code></td><td><code>[&quot;&lt;sha-1&gt;&quot;, ...]</code></td><td>Extra pinned root SHA-1 hex strings the chain must reach.</td></tr>
         </tbody>
       </table>
+      <p>These run before any output is produced; if a check fails, signing is refused and an
+      <code> AtickException</code> is thrown (see the <a href="/docs/php/certification/">Certification</a> page).</p>
+      <Code lang="php" file="api.php" code={`$signed = Atick::signPfx($pdf, $pfx, [
+    "password"      => "secret",
+    "verify_expiry" => true,                          // not expired / not yet valid
+    "verify_crl"    => true,                           // CRL check
+    "verify_ocsp"   => true,                           // OCSP check
+    "trusted_roots" => ["<root SHA-1>", "<another>"],  // chain must reach one of these
+]);`} />
 
       <h3>Document security</h3>
       <table>

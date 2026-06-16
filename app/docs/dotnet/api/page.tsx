@@ -84,9 +84,21 @@ catch (AtickException e)
       <ul>
         <li><strong>data</strong> — the bytes to sign (typically <code>BytesToSign</code> from <code>Prepare</code>).</li>
         <li><strong>pfx</strong> — the credential bytes.</li>
-        <li><strong>optionsJson</strong> — <code>password</code>, <code>hash_algo</code>, <code>pades</code>, <code>timestamp</code>, <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>.</li>
+        <li><strong>optionsJson</strong> — <code>password</code>, <code>hash_algo</code>, <code>pades</code>, <code>timestamp</code>, <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>, <code>revocation</code>.</li>
         <li><strong>returns</strong> — the detached CMS as <code>byte[]</code>.</li>
       </ul>
+      <p>Set <code>&quot;revocation&quot;:true</code> to embed a RevocationInfoArchival attribute (the
+      CRL/OCSP responses for the signer chain) inside the CMS, so the signature carries its own
+      revocation evidence. Pair it with <code>AddDocTimestamp</code> — which adds the DSS for the
+      timestamp chain — for a fully self-contained, long-term-verifiable result.</p>
+      <Code lang="dotnet" file="CmsRevocation.cs" code={`// CMS that embeds its own revocation info
+byte[] cms = Atick.CmsPfx(bytesToSign, pfx,
+    "{\\"password\\":\\"secret\\",\\"pades\\":true,\\"revocation\\":true}");
+
+byte[] signed = Atick.Embed(prepared, cms);
+
+// add the DSS for the timestamp chain (PAdES-B-LTA)
+byte[] lta = Atick.AddDocTimestamp(signed, "{\\"tsa_url\\":\\"http://timestamp.example/tsa\\"}");`} />
 
       <Code lang="dotnet" file="Embed.cs" code={`static byte[] Embed(byte[] prepared, byte[] cms)`} />
       <p>Embed a detached CMS / PKCS#7 into a prepared PDF. Returns the signed PDF bytes.</p>
@@ -187,6 +199,9 @@ byte[] signed = Atick.Embed(prepared, cms);`} />
           <tr><td><code>mark_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Colour of the mark.</td></tr>
           <tr><td><code>mark_gradient</code></td><td>array of colours</td><td>Gradient fill for the mark.</td></tr>
           <tr><td><code>mark_scale</code></td><td>number</td><td>Scale factor for the mark size.</td></tr>
+          <tr><td><code>mark_dx</code></td><td>number</td><td>Nudge the mark horizontally (PDF points; positive = right).</td></tr>
+          <tr><td><code>mark_dy</code></td><td>number</td><td>Nudge the mark vertically (PDF points; positive = up).</td></tr>
+          <tr><td><code>top_reserve</code></td><td>number</td><td>Fraction of the box height (e.g. <code>0.32</code>) reserved at the top for the logo / mark.</td></tr>
         </tbody>
       </table>
 
@@ -197,6 +212,10 @@ byte[] signed = Atick.Embed(prepared, cms);`} />
           <tr><td><code>text_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Text colour.</td></tr>
           <tr><td><code>bg_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Background colour of the appearance.</td></tr>
           <tr><td><code>border</code></td><td>bool</td><td>Draw a border around the appearance.</td></tr>
+          <tr><td><code>border_color</code></td><td><code>[r, g, b]</code></td><td>Border colour (requires <code>&quot;border&quot;:true</code>).</td></tr>
+          <tr><td><code>border_width</code></td><td>number</td><td>Border line width in points, e.g. <code>1.0</code> (requires <code>&quot;border&quot;:true</code>).</td></tr>
+          <tr><td><code>text_dx</code></td><td>number</td><td>Nudge the signer text horizontally (PDF points; positive = right).</td></tr>
+          <tr><td><code>text_top</code></td><td>number</td><td>Vertical start of the text block, as a fraction of box height from the top.</td></tr>
           <tr><td><code>font_size</code></td><td>number</td><td>Font size of the appearance text.</td></tr>
           <tr><td><code>width</code></td><td>number</td><td>Appearance width.</td></tr>
           <tr><td><code>height</code></td><td>number</td><td>Appearance height.</td></tr>
@@ -247,8 +266,16 @@ byte[] signed = Atick.Embed(prepared, cms);`} />
           <tr><td><code>verify_expiry</code></td><td>bool</td><td>Check certificate validity dates.</td></tr>
           <tr><td><code>verify_crl</code></td><td>bool</td><td>Check the CRL.</td></tr>
           <tr><td><code>verify_ocsp</code></td><td>bool</td><td>Check OCSP.</td></tr>
+          <tr><td><code>trusted_roots</code></td><td>array of strings</td><td>Extra pinned root SHA-1 hex strings; the chain (built from AIA) must reach one of them.</td></tr>
         </tbody>
       </table>
+
+      <Code lang="dotnet" file="VerifyOptions.cs" code={`Atick.SignPfx(pdf, pfx,
+    "{\\"password\\":\\"secret\\"," +
+    "\\"verify_expiry\\":true," +
+    "\\"verify_crl\\":true," +
+    "\\"verify_ocsp\\":true," +
+    "\\"trusted_roots\\":[\\"<root SHA-1>\\"]}");`} />
 
       <h3>Document security</h3>
       <table>

@@ -89,11 +89,41 @@ atick.Style(cn="...", mark_gradient=["red", "orange", "yellow"])   # axial gradi
       <p>A cryptographically valid signature that draws nothing on the page:</p>
       <Code lang="python" file="invisible.py" code={`atick.sign_pfx(pdf, pfx=pfx, password=pw, style=atick.Style(cn="..."), placements=[])   # empty placements`} />
 
+      <h2>Fine-tuning the layout</h2>
+      <p>These keyword attributes give you precise control over the box geometry, the validity mark,
+      the text block and the border.</p>
+      <Code lang="python" file="fine_tuning.py" code={`atick.Style(cn="...",
+    top_reserve=0.32,            # fraction of the box height reserved at the TOP for the
+                                 # logo / validity mark - raise it for a taller logo area
+    mark_scale=1.0,              # scale the validity mark (>1 bigger, <1 smaller)
+    mark_dx=0.0, mark_dy=0.0,    # nudge the mark horizontally / vertically (points)
+    text_dx=0.0,                 # nudge the whole text block horizontally (points)
+    text_top=None,              # set the top of the text block (None = automatic)
+    border=True,                 # draw a border around the appearance
+    border_color=(0, 0, 0),      # border colour - RGB 0-255 (or 0-1 floats)
+    border_width=1.0,            # border width in points
+    date_format="%d-%b-%Y %I:%M %p",   # strftime format used when "date" is not given explicitly
+)`} />
+      <ul>
+        <li><strong><code>top_reserve</code></strong> — fraction (0–1) of the appearance box height
+        kept clear at the top for the logo / validity mark. Default <code>0.32</code>; raise it when
+        your logo needs more headroom.</li>
+        <li><strong><code>mark_scale</code> / <code>mark_dx</code> / <code>mark_dy</code></strong> —
+        scale and nudge (x / y offset) the validity mark.</li>
+        <li><strong><code>text_dx</code> / <code>text_top</code></strong> — nudge the text block
+        horizontally / set its top edge.</li>
+        <li><strong><code>border_color</code> / <code>border_width</code></strong> — colour and width
+        of the appearance border (used with <code>border=True</code>).</li>
+        <li><strong><code>date_format</code></strong> — strftime format applied to the automatic date
+        when <code>date</code> is not given explicitly.</li>
+      </ul>
+
       <h2>Other Style options</h2>
       <p><code>font_size</code>, <code>text_dx</code>, <code>text_top</code>, <code>text_color</code>,
       <code>bg_color</code>, <code>border</code>, <code>border_color</code>, <code>border_width</code>,
-      <code>mark_scale</code>, <code>mark_dx</code>, <code>mark_dy</code>, <code>width</code>,
-      <code>height</code>, <code>heading</code>, <code>ou</code>, <code>text</code>.</p>
+      <code>mark_scale</code>, <code>mark_dx</code>, <code>mark_dy</code>, <code>top_reserve</code>,
+      <code>width</code>, <code>height</code>, <code>heading</code>, <code>ou</code>,
+      <code>text</code>.</p>
 
       <p><a href="/docs/python/certification/">Next page →</a></p>
     </DocsShell>

@@ -18,6 +18,19 @@ export default function Page() {
     owner_password=None, embed_revocation=True)`} />
       <p>Sign <code>pdf</code> (bytes) with a PFX/P12. Returns the signed PDF (bytes).</p>
 
+      <p>Besides <code>verify=True</code> (which runs every pre-sign check and refuses to sign on
+      failure), you can enable the individual checks:</p>
+      <ul>
+        <li><code>verify_expiry=True</code> — refuse to sign if the signing certificate has expired /
+        is not yet valid.</li>
+        <li><code>verify_crl=True</code> — pre-sign CRL revocation check (refuse if revoked).</li>
+        <li><code>verify_ocsp=True</code> — pre-sign OCSP revocation check.</li>
+        <li><code>trusted_roots=[der, ...]</code> — extra trusted root certificates (DER bytes) for
+        the checks.</li>
+      </ul>
+      <Code lang="python" file="sign_pfx_checks.py" code={`atick.sign_pfx(pdf, pfx, pw, style=..., placements=...,
+    verify_expiry=True, verify_crl=True, verify_ocsp=True)`} />
+
       <Code lang="python" file="sign_pkcs11_sig.py" code={`atick.sign_pkcs11(pdf, *, dll, pin, serial, style, placements, ...)`} />
       <p>Sign with a PKCS#11 token / smart-card / HSM. Same options as <code>sign_pfx</code> (no
       PFX/encryption args).</p>
@@ -73,7 +86,9 @@ export default function Page() {
       <p>Add the DSS (validation material) for the given certificates / revocation.</p>
 
       <Code lang="python" file="add_doctimestamp_sig.py" code={`atick.add_doctimestamp(pdf, *, tsa_url=None, tsa_auth=None, ltv=True, contents_size=16384)`} />
-      <p>Append a document timestamp (RFC-3161) over the whole PDF (PAdES-B-LTA).</p>
+      <p>Append a document timestamp (RFC-3161) over the whole PDF (PAdES-B-LTA).
+      <code>ltv=True</code> also adds the DSS (validation material) for the timestamp&apos;s
+      certificate chain.</p>
 
       <h2>Documents &amp; utilities</h2>
       <Code lang="python" file="set_metadata_sig.py" code={`atick.set_metadata(pdf, *, title=None, author=None, subject=None, keywords=None,
@@ -99,6 +114,19 @@ export default function Page() {
       left; <code>body=</code> is a custom-text-only appearance (<code>\\n</code> = line,
       <code>*x*</code> = bold); <code>green_tick=True</code> is the &quot;?&quot; mark,
       <code>always_check=True</code> the embedded green tick.</p>
+      <p>Layout fine-tuning attributes:</p>
+      <ul>
+        <li><code>top_reserve=0.32</code> — fraction of the appearance box height reserved at the top
+        for the logo / validity mark (raise it for a taller logo area).</li>
+        <li><code>mark_scale</code>, <code>mark_dx</code>, <code>mark_dy</code> — scale and nudge
+        (x / y offset) the validity mark.</li>
+        <li><code>text_dx</code>, <code>text_top</code> — nudge the text block horizontally / set its
+        top.</li>
+        <li><code>border_color=(r, g, b)</code>, <code>border_width=1.0</code> — colour and width of
+        the appearance border (with <code>border=True</code>).</li>
+        <li><code>date_format=&quot;%d-%b-%Y %I:%M %p&quot;</code> — strftime format used when
+        <code>date</code> is not given explicitly.</li>
+      </ul>
 
       <Code lang="python" file="certify_sig.py" code={`atick.Certify`} />
       <p>Certification levels: <code>NONE</code> (0), <code>NO_CHANGES</code> (1),

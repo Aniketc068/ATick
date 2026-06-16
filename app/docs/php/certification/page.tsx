@@ -109,6 +109,27 @@ try {
       certificate). If those endpoints are unreachable the check cannot complete and signing is refused —
       keep the catch block above in place.</blockquote>
 
+      <h3>Carrying revocation evidence in the signature</h3>
+      <p>The checks above validate the certificate at signing time. To make the <em>signature itself</em> carry that
+      revocation evidence — so it stays verifiable long after the CA&apos;s endpoints have moved on — embed the
+      revocation info when you build the CMS. Set <code>&apos;revocation&apos; =&gt; true</code> on <code>Atick::cmsPfx(...)</code> to
+      embed a <code>RevocationInfoArchival</code> attribute (the signer chain&apos;s CRL/OCSP responses) inside the CMS:</p>
+      <Code lang="php" file="revocation.php" code={`[$prepared, $bytesToSign] = Atick::prepare($pdf, $options);
+
+$cms    = Atick::cmsPfx($bytesToSign, $pfx, [
+    "password"   => "••••",
+    "pades"      => true,
+    "revocation" => true,   // embed RevocationInfoArchival (CRL/OCSP) in the CMS
+]);
+$signed = Atick::embed($prepared, $cms);`} />
+      <p>Then add an archive timestamp with <code>Atick::addDocTimestamp(...)</code> — it writes the DSS (Document
+      Security Store) for the timestamp&apos;s own certificate chain, completing a long-term-validatable
+      PAdES-B-LTA document:</p>
+      <Code lang="php" file="revocation.php" code={`$archived = Atick::addDocTimestamp($signed, [
+    "tsa_url" => "http://timestamp.example/tsa",
+    "ltv"     => true,
+]);`} />
+
       <p><a href="/docs/php/esign/">Next page →</a></p>
     </DocsShell>
   );

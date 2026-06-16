@@ -118,6 +118,37 @@ atick.signPfx(pdf, pfx, JSON.stringify({
 }));`} />
       <p>You can also size the box directly with <code>width</code> and <code>height</code>.</p>
 
+      <h2>Fine-tuning the layout</h2>
+      <p>When the default placement is close but not exact, nudge the pieces individually instead of
+      redesigning the box. All offsets are in PDF points unless noted.</p>
+      <Code lang="node" file="fine-tune.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({
+  cn: "Aniket", green_tick: true,
+  top_reserve: 0.32,   // reserve the top 32% of the box for the logo / mark
+  mark_scale: 1.2,     // make the mark 20% larger
+  mark_dx: 4,          // nudge the mark right
+  mark_dy: -2,         // nudge the mark down
+  text_dx: 6,          // nudge the signer text right
+  text_top: 4,         // push the text down from the top
+}));`} />
+      <ul>
+        <li><strong><code>top_reserve</code></strong> — fraction (<code>0</code>–<code>1</code>) of the box height kept clear at the top for the logo or validity mark; raise it to give the mark more room above the text.</li>
+        <li><strong><code>mark_scale</code></strong> — scale factor for the mark relative to the box; <strong><code>mark_dx</code></strong> / <strong><code>mark_dy</code></strong> shift it horizontally / vertically.</li>
+        <li><strong><code>text_dx</code></strong> — horizontal shift of the signer text; <strong><code>text_top</code></strong> — vertical offset of the text from the top of the box.</li>
+      </ul>
+
+      <h3>Border colour &amp; width</h3>
+      <p>With <code>border: true</code>, set the border colour and line width:</p>
+      <Code lang="node" file="border.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({
+  cn: "Aniket", green_tick: true,
+  border: true,
+  border_color: [33, 150, 243],   // [r, g, b] (also accepts hex or a CSS name)
+  border_width: 1.0,              // line width in PDF points
+}));`} />
+      <ul>
+        <li><strong><code>border_color</code></strong> — a hex string, a CSS colour name, or an <code>[r, g, b]</code> array.</li>
+        <li><strong><code>border_width</code></strong> — border line width in PDF points (e.g. <code>1.0</code>).</li>
+      </ul>
+
       <h2>Invisible signature</h2>
       <p>A cryptographically valid signature that draws nothing on the page — pass an empty
       <code>placements</code> array:</p>
@@ -134,8 +165,13 @@ atick.signPfx(pdf, pfx, JSON.stringify({
           <tr><td><code>text_color</code></td><td>colour of the text</td></tr>
           <tr><td><code>bg_color</code></td><td>background fill of the box</td></tr>
           <tr><td><code>border</code></td><td>draw a border around the box</td></tr>
+          <tr><td><code>border_color</code></td><td>border colour (hex / name / <code>[r,g,b]</code>) — used with <code>border: true</code></td></tr>
+          <tr><td><code>border_width</code></td><td>border line width in PDF points</td></tr>
           <tr><td><code>width</code>, <code>height</code></td><td>the box size</td></tr>
+          <tr><td><code>top_reserve</code></td><td>top fraction (0–1) reserved for the logo / mark</td></tr>
           <tr><td><code>mark_scale</code></td><td>scale factor for the validity mark</td></tr>
+          <tr><td><code>mark_dx</code>, <code>mark_dy</code></td><td>nudge the mark horizontally / vertically (PDF points)</td></tr>
+          <tr><td><code>text_dx</code>, <code>text_top</code></td><td>nudge the signer text horizontally / from the top (PDF points)</td></tr>
         </tbody>
       </table>
 

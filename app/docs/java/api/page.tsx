@@ -81,9 +81,12 @@ try {
       <ul>
         <li><strong>data</strong> — the bytes to sign (typically index <code>1</code> from <code>prepare</code>).</li>
         <li><strong>pfx</strong> — the credential bytes.</li>
-        <li><strong>optionsJson</strong> — <code>password</code>, <code>hash_algo</code>, <code>pades</code>, <code>timestamp</code>, <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>.</li>
+        <li><strong>optionsJson</strong> — <code>password</code>, <code>hash_algo</code>, <code>pades</code>, <code>timestamp</code>, <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>, <code>revocation</code>.</li>
         <li><strong>returns</strong> — the detached CMS as <code>byte[]</code>.</li>
       </ul>
+      <p>Pass <code>&quot;revocation&quot;:true</code> to embed the <code>RevocationInfoArchival</code>
+      attribute (the signer&apos;s CRL / OCSP responses) inside the produced CMS, so the signature
+      carries its own revocation evidence.</p>
       <Code lang="java" file="Embed.java" code={`static byte[] embed(byte[] prepared, byte[] cms)`} />
       <p>Embed a detached CMS / PKCS#7 into a prepared PDF. Returns the signed PDF bytes.</p>
       <ul>
@@ -119,6 +122,8 @@ byte[] signed = Atick.embed(prepared, cms);`} />
         <li><strong>optionsJson</strong> — <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>, <code>contents_size</code>.</li>
         <li><strong>returns</strong> — the timestamped PDF as <code>byte[]</code>.</li>
       </ul>
+      <p><code>addDocTimestamp</code> also adds the DSS validation material for the timestamp
+      certificate chain, so the archive timestamp is itself long-term verifiable.</p>
 
       <h2>Documents &amp; utilities</h2>
       <Code lang="java" file="SetMetadata.java" code={`static byte[] setMetadata(byte[] pdf, String optionsJson)`} />
@@ -196,6 +201,21 @@ byte[] signed = Atick.embed(prepared, cms);`} />
         </tbody>
       </table>
 
+      <h3>Appearance fine-tuning</h3>
+      <table>
+        <thead><tr><th>Key</th><th>Type</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>top_reserve</code></td><td>number</td><td>Fraction of the box height reserved at the top for the logo / validity mark (e.g. <code>0.32</code>).</td></tr>
+          <tr><td><code>mark_scale</code></td><td>number</td><td>Scale factor for the validity mark.</td></tr>
+          <tr><td><code>mark_dx</code></td><td>number</td><td>Nudge the validity mark horizontally (PDF points).</td></tr>
+          <tr><td><code>mark_dy</code></td><td>number</td><td>Nudge the validity mark vertically (PDF points).</td></tr>
+          <tr><td><code>text_dx</code></td><td>number</td><td>Nudge the text block horizontally (PDF points).</td></tr>
+          <tr><td><code>text_top</code></td><td>number</td><td>Nudge the text block vertically from the top.</td></tr>
+          <tr><td><code>border_color</code></td><td><code>[r, g, b]</code></td><td>Border colour (used with <code>border</code>).</td></tr>
+          <tr><td><code>border_width</code></td><td>number</td><td>Border width in points (used with <code>border</code>).</td></tr>
+        </tbody>
+      </table>
+
       <h3>Placement</h3>
       <table>
         <thead><tr><th>Key</th><th>Type</th><th>Meaning</th></tr></thead>
@@ -218,6 +238,7 @@ byte[] signed = Atick.embed(prepared, cms);`} />
           <tr><td><code>tsa_url</code></td><td>string</td><td>Timestamp authority URL.</td></tr>
           <tr><td><code>tsa_auth</code></td><td><code>[&quot;user&quot;, &quot;pass&quot;]</code></td><td>Basic-auth credentials for the TSA.</td></tr>
           <tr><td><code>ltv</code></td><td>bool</td><td>Add long-term validation material (DSS).</td></tr>
+          <tr><td><code>revocation</code></td><td>bool</td><td>On <code>cmsPfx</code>, embed the <code>RevocationInfoArchival</code> attribute (CRL/OCSP responses) inside the CMS.</td></tr>
           <tr><td><code>lta</code></td><td>bool</td><td>Add an archive DocTimeStamp (PAdES-B-LTA).</td></tr>
           <tr><td><code>contents_size</code></td><td>int</td><td>Size of the signature <code>/Contents</code> placeholder (default <code>16384</code>).</td></tr>
         </tbody>
@@ -233,15 +254,25 @@ byte[] signed = Atick.embed(prepared, cms);`} />
       </table>
 
       <h3>Verification</h3>
+      <p>Each check runs <strong>before</strong> signing; if it fails, no output is produced and the
+      method throws <code>Atick.AtickException</code>. Use <code>verify</code> to run all checks at
+      once, or enable the granular keys individually.</p>
       <table>
         <thead><tr><th>Key</th><th>Type</th><th>Meaning</th></tr></thead>
         <tbody>
-          <tr><td><code>verify</code></td><td>bool</td><td>Verify the certificate before signing.</td></tr>
-          <tr><td><code>verify_expiry</code></td><td>bool</td><td>Check certificate validity dates.</td></tr>
-          <tr><td><code>verify_crl</code></td><td>bool</td><td>Check the CRL.</td></tr>
-          <tr><td><code>verify_ocsp</code></td><td>bool</td><td>Check OCSP.</td></tr>
+          <tr><td><code>verify</code></td><td>bool</td><td>Run the full set of pre-sign checks (expiry + CRL + OCSP); refuse to sign on any failure.</td></tr>
+          <tr><td><code>verify_expiry</code></td><td>bool</td><td>Refuse to sign if the certificate is expired or not yet valid.</td></tr>
+          <tr><td><code>verify_crl</code></td><td>bool</td><td>Pre-sign CRL revocation check.</td></tr>
+          <tr><td><code>verify_ocsp</code></td><td>bool</td><td>Pre-sign OCSP revocation check.</td></tr>
+          <tr><td><code>trusted_roots</code></td><td><code>[...]</code> base64/DER</td><td>Extra trusted roots (base64-encoded DER certificates) used by the checks above.</td></tr>
         </tbody>
       </table>
+      <Code lang="java" file="VerifyOptions.java" code={`String options =
+    "{\\"password\\":\\"secret\\"," +
+    "\\"verify_expiry\\":true," +     // refuse if expired / not yet valid
+    "\\"verify_crl\\":true," +        // pre-sign CRL check
+    "\\"verify_ocsp\\":true," +       // pre-sign OCSP check
+    "\\"trusted_roots\\":[\\"<base64 DER root>\\"]}";`} />
 
       <h3>Document security</h3>
       <table>

@@ -102,6 +102,23 @@ try {
       revocation endpoints (discovered from the certificate). If those endpoints are unreachable the
       check cannot complete and signing is refused — keep the catch block above in place.</blockquote>
 
+      <h2>Embedding revocation proof</h2>
+      <p>The pre-sign checks above validate the certificate <em>at signing time</em>. To let a verifier
+      confirm the signature <em>later</em> — after the CRL/OCSP endpoints may be gone — embed the
+      revocation material in the signature itself. On <code>cmsPfx</code>, pass <code>revocation: true</code>
+      to embed RevocationInfoArchival (the signer&apos;s CRL and OCSP responses) inside the CMS:</p>
+      <Code lang="node" file="revocation.js" code={`const cms = atick.cmsPfx(bytesToSign, pfx, JSON.stringify({
+    password: "••••",
+    pades: true,
+    revocation: true,   // embed RevocationInfoArchival in the CMS
+}));
+const signed = atick.embed(prepared, cms);
+
+// add the DSS validation material for the timestamp chain (PAdES-B-LTA)
+const lta = atick.addDocTimestamp(signed, JSON.stringify({ tsa_url: "http://timestamp.example/tsa" }));`} />
+      <p>Then <code>addDocTimestamp</code> adds the DSS for the timestamp chain, completing a
+      self-contained, long-term-verifiable document.</p>
+
       <p><a href="/docs/node/esign/">Next page →</a></p>
     </DocsShell>
   );

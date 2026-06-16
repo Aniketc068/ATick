@@ -115,6 +115,52 @@ Atick::signPfx($pdf, $pfx, [
 ]);`} />
       <p>You can also size the box directly with <code>width</code> and <code>height</code>.</p>
 
+      <h2>Fine-tuning the layout</h2>
+      <p>Once the box is placed you can nudge the mark, the logo region, and the text independently —
+      useful for matching an exact house style without recomputing the rectangle.</p>
+      <Code lang="php" file="tune.php" code={`Atick::signPfx($pdf, $pfx, [
+    "cn"          => "Aniket",
+    "green_tick"  => true,
+    "top_reserve" => 0.32,        // fraction of the box height reserved at the top for the logo / mark
+    "mark_scale"  => 1.15,        // scale the mark up (1.0 = default)
+    "mark_dx"     => 4,           // nudge the mark right (PDF points; negative = left)
+    "mark_dy"     => -2,          // nudge the mark down (negative = up)
+    "text_dx"     => 6,           // nudge the signer text horizontally
+    "text_top"    => 0.5,         // vertical start of the text block (fraction of box height)
+]);`} />
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Type</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>top_reserve</code></td><td>number (0–1)</td><td>Fraction of the box height reserved at the top for the logo / validity mark.</td></tr>
+          <tr><td><code>mark_scale</code></td><td>number</td><td>Scale factor for the mark (<code>1.0</code> = default).</td></tr>
+          <tr><td><code>mark_dx</code></td><td>number</td><td>Nudge the mark horizontally in PDF points (negative = left).</td></tr>
+          <tr><td><code>mark_dy</code></td><td>number</td><td>Nudge the mark vertically in PDF points (negative = up).</td></tr>
+          <tr><td><code>text_dx</code></td><td>number</td><td>Nudge the signer text horizontally in PDF points.</td></tr>
+          <tr><td><code>text_top</code></td><td>number</td><td>Vertical start of the text block (fraction of the box height).</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Border colour &amp; width</h3>
+      <p>With <code>border =&gt; true</code> you can set the border&apos;s colour and thickness:</p>
+      <Code lang="php" file="border.php" code={`Atick::signPfx($pdf, $pfx, [
+    "cn"           => "Aniket",
+    "border"       => true,
+    "border_color" => [0, 102, 204],   // [r, g, b] (0–255)
+    "border_width" => 1.0,             // line width in PDF points
+]);`} />
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Type</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>border</code></td><td>bool</td><td>Draw a border around the appearance box.</td></tr>
+          <tr><td><code>border_color</code></td><td><code>[r, g, b]</code></td><td>Border colour (each channel 0–255). Requires <code>border =&gt; true</code>.</td></tr>
+          <tr><td><code>border_width</code></td><td>number</td><td>Border line width in PDF points (default <code>1.0</code>).</td></tr>
+        </tbody>
+      </table>
+
       <h2>Invisible signature</h2>
       <p>A cryptographically valid signature that draws nothing on the page — pass an empty <code>placements</code>
       array:</p>
@@ -133,8 +179,12 @@ Atick::signPfx($pdf, $pfx, [
           <tr><td><code>text_color</code></td><td>colour of the text</td></tr>
           <tr><td><code>bg_color</code></td><td>background fill of the box</td></tr>
           <tr><td><code>border</code></td><td>draw a border around the box</td></tr>
+          <tr><td><code>border_color</code>, <code>border_width</code></td><td>border colour <code>[r,g,b]</code> and line width (with <code>border =&gt; true</code>)</td></tr>
           <tr><td><code>width</code>, <code>height</code></td><td>the box size</td></tr>
+          <tr><td><code>top_reserve</code></td><td>fraction of box height reserved at the top for the logo / mark</td></tr>
           <tr><td><code>mark_scale</code></td><td>scale factor for the validity mark</td></tr>
+          <tr><td><code>mark_dx</code>, <code>mark_dy</code></td><td>nudge the mark horizontally / vertically (PDF points)</td></tr>
+          <tr><td><code>text_dx</code>, <code>text_top</code></td><td>nudge the signer text horizontally / set its vertical start</td></tr>
         </tbody>
       </table>
 

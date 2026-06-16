@@ -48,6 +48,25 @@ atick.sign_pfx(pdf, lock_fields=["*"], ...)              # lock ALL fields`} />
     trusted_roots=["<root SHA-1>", "<another>"],   # chain must reach one of these (built from AIA)
 )`} />
 
+      <h3>Granular checks</h3>
+      <p>Instead of the all-in-one <code>verify=True</code> (which runs every check and refuses to
+      sign on failure), you can switch on the individual checks:</p>
+      <ul>
+        <li><strong><code>verify_expiry=True</code></strong> — refuse to sign if the signing
+        certificate has expired or is not yet valid.</li>
+        <li><strong><code>verify_crl=True</code></strong> — pre-sign CRL revocation check (refuse if
+        the certificate is revoked).</li>
+        <li><strong><code>verify_ocsp=True</code></strong> — pre-sign OCSP revocation check.</li>
+        <li><strong><code>trusted_roots=[der, ...]</code></strong> — extra trusted root certificates
+        (DER bytes) used by the checks when building the chain.</li>
+      </ul>
+      <Code lang="python" file="presign_granular.py" code={`atick.sign_pfx(pdf, pfx, pw, style=..., placements=...,
+    verify_expiry=True,    # refuse if expired / not yet valid
+    verify_crl=True,       # refuse if revoked (CRL)
+    verify_ocsp=True,      # refuse if revoked (OCSP)
+)`} />
+      <p>Any check that fails raises <code>atick.AtickError</code> before the document is touched.</p>
+
       <p><a href="/docs/python/esign/">Next page →</a></p>
     </DocsShell>
   );

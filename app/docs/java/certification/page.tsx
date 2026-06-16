@@ -71,13 +71,18 @@ byte[] lockedAll = Atick.signPfx(pdf, pfx,
           <tr><td><code>verify_expiry</code></td><td>certificate must not be expired (or not yet valid)</td></tr>
           <tr><td><code>verify_crl</code></td><td>certificate must not be revoked per its CRL</td></tr>
           <tr><td><code>verify_ocsp</code></td><td>certificate must not be revoked per OCSP</td></tr>
-          <tr><td><code>trusted_roots</code></td><td>chain (built from AIA) must reach one of these pinned root SHA-1 hex strings</td></tr>
+          <tr><td><code>trusted_roots</code></td><td>extra trusted roots (a base64-encoded DER certificate list) the chain may reach for the checks above</td></tr>
         </tbody>
       </table>
+      <p>The granular keys mirror the umbrella <code>verify</code> flag, so you can run just one
+      check: <code>verify_expiry</code> refuses to sign an expired (or not-yet-valid) certificate,
+      <code> verify_crl</code> runs a pre-sign CRL revocation check, and <code>verify_ocsp</code>
+      runs a pre-sign OCSP revocation check. Supply <code>trusted_roots</code> as a list of
+      base64-encoded DER certificates to add extra roots the chain is allowed to terminate at.</p>
       <Code lang="java" file="Verify.java" code={`byte[] out = Atick.signPfx(pdf, pfx,
     "{\\"password\\":\\"••••\\"," +
-    "\\"verify\\":true," +                                  // not expired + CRL + OCSP + not revoked
-    "\\"trusted_roots\\":[\\"<root SHA-1>\\",\\"<another>\\"]}"); // chain must reach one of these`} />
+    "\\"verify\\":true," +                                       // not expired + CRL + OCSP + not revoked
+    "\\"trusted_roots\\":[\\"<base64 DER>\\",\\"<base64 DER>\\"]}"); // extra roots the chain may reach`} />
       <p>You can also enable the individual checks instead of the umbrella <code>verify</code>
       flag:</p>
       <Code lang="java" file="VerifyEach.java" code={`byte[] out = Atick.signPfx(pdf, pfx,
@@ -95,10 +100,10 @@ try {
     byte[] out = Atick.signPfx(pdf, pfx,
         "{\\"password\\":\\"••••\\"," +
         "\\"verify\\":true," +
-        "\\"trusted_roots\\":[\\"<root SHA-1>\\"]}");
+        "\\"trusted_roots\\":[\\"<base64 DER>\\"]}");
     Files.write(Path.of("signed.pdf"), out);
 } catch (Atick.AtickException e) {
-    // certificate expired, revoked (CRL/OCSP), or chain did not reach a pinned root —
+    // certificate expired, revoked (CRL/OCSP), or chain did not reach a trusted root —
     // nothing was signed
     System.err.println("Signing refused: " + e.getMessage());
 }`} />

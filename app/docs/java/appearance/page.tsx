@@ -146,6 +146,32 @@ Atick.signPfx(pdf, pfx,
         </tbody>
       </table>
 
+      <h2>Fine-tuning the layout</h2>
+      <p>When the default placement of the logo, mark, and text needs a nudge, these keys adjust the
+      box without changing its size. The mark and text offsets are in PDF points;
+      <code> top_reserve</code> is a fraction of the box height.</p>
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>top_reserve</code></td><td>fraction of the box height reserved at the top for the logo / validity mark (e.g. <code>0.32</code>)</td></tr>
+          <tr><td><code>mark_scale</code></td><td>scale the validity mark</td></tr>
+          <tr><td><code>mark_dx</code></td><td>nudge the mark horizontally</td></tr>
+          <tr><td><code>mark_dy</code></td><td>nudge the mark vertically</td></tr>
+          <tr><td><code>text_dx</code></td><td>nudge the text block horizontally</td></tr>
+          <tr><td><code>text_top</code></td><td>nudge the text block down from the top</td></tr>
+          <tr><td><code>border_color</code></td><td><code>[r, g, b]</code> border colour (with <code>border</code>)</td></tr>
+          <tr><td><code>border_width</code></td><td>border width in points (with <code>border</code>)</td></tr>
+        </tbody>
+      </table>
+      <Code lang="java" file="FineTune.java" code={`Atick.signPfx(pdf, pfx,
+    "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true," +
+    "\\"top_reserve\\":0.32," +              // reserve top 32% for the logo / mark
+    "\\"mark_scale\\":1.1,\\"mark_dx\\":4,\\"mark_dy\\":-2," +  // resize + nudge the mark
+    "\\"text_dx\\":6,\\"text_top\\":8," +        // nudge the text block
+    "\\"border\\":true,\\"border_color\\":[80,80,80],\\"border_width\\":1.0}");`} />
+
       <h2>Errors</h2>
       <p>Every failure throws <code>Atick.AtickException</code>:</p>
       <Code lang="java" file="Errors.java" code={`try {

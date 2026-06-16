@@ -84,9 +84,21 @@ try {
       <ul>
         <li><strong>data</strong> — the bytes to sign (typically <code>bytesToSign</code> from <code>prepare</code>) as a <code>Buffer</code>.</li>
         <li><strong>pfx</strong> — the credential bytes (<code>Buffer</code>).</li>
-        <li><strong>optionsJson</strong> — <code>password</code>, <code>hash_algo</code>, <code>pades</code>, <code>timestamp</code>, <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>.</li>
+        <li><strong>optionsJson</strong> — <code>password</code>, <code>hash_algo</code>, <code>pades</code>, <code>timestamp</code>, <code>tsa_url</code>, <code>tsa_auth</code>, <code>ltv</code>, <code>revocation</code>.</li>
         <li><strong>returns</strong> — the detached CMS as a <code>Buffer</code>.</li>
       </ul>
+      <p>Set <code>revocation: true</code> to embed RevocationInfoArchival (the signer&apos;s CRL and OCSP
+      responses) inside the CMS, so the signature carries its own revocation proof. Pair it with
+      <code>addDocTimestamp</code> afterwards to add the DSS for the timestamp chain (PAdES-B-LTA).</p>
+      <Code lang="node" file="cmspfx-revocation.js" code={`const cms = atick.cmsPfx(bytesToSign, pfx, JSON.stringify({
+  password: "secret",
+  pades: true,
+  revocation: true,   // embed RevocationInfoArchival in the CMS
+}));
+const signed = atick.embed(prepared, cms);
+
+// add the DSS for the timestamp chain
+const lta = atick.addDocTimestamp(signed, JSON.stringify({ tsa_url: "http://timestamp.example/tsa" }));`} />
       <Code lang="node" file="embed-sig.js" code={`atick.embed(prepared, cms) // -> Buffer`} />
       <p>Embed a detached CMS / PKCS#7 into a prepared PDF. Returns the signed PDF bytes.</p>
       <ul>
@@ -180,6 +192,9 @@ const signed = atick.embed(prepared, cms);`} />
           <tr><td><code>mark_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Colour of the mark.</td></tr>
           <tr><td><code>mark_gradient</code></td><td>array of colours</td><td>Gradient fill for the mark.</td></tr>
           <tr><td><code>mark_scale</code></td><td>number</td><td>Scale factor for the mark size.</td></tr>
+          <tr><td><code>mark_dx</code></td><td>number</td><td>Horizontal nudge of the mark, in PDF points.</td></tr>
+          <tr><td><code>mark_dy</code></td><td>number</td><td>Vertical nudge of the mark, in PDF points.</td></tr>
+          <tr><td><code>top_reserve</code></td><td>number (0–1)</td><td>Fraction of the box height reserved at the top for the logo / mark (e.g. <code>0.32</code>).</td></tr>
         </tbody>
       </table>
 
@@ -190,6 +205,10 @@ const signed = atick.embed(prepared, cms);`} />
           <tr><td><code>text_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Text colour.</td></tr>
           <tr><td><code>bg_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Background colour of the appearance.</td></tr>
           <tr><td><code>border</code></td><td>bool</td><td>Draw a border around the appearance.</td></tr>
+          <tr><td><code>border_color</code></td><td>string hex / name / <code>[r,g,b]</code></td><td>Border colour (used with <code>border: true</code>).</td></tr>
+          <tr><td><code>border_width</code></td><td>number</td><td>Border line width in PDF points (e.g. <code>1.0</code>).</td></tr>
+          <tr><td><code>text_dx</code></td><td>number</td><td>Horizontal nudge of the appearance text, in PDF points.</td></tr>
+          <tr><td><code>text_top</code></td><td>number</td><td>Top offset of the appearance text, in PDF points.</td></tr>
           <tr><td><code>font_size</code></td><td>number</td><td>Font size of the appearance text.</td></tr>
           <tr><td><code>width</code></td><td>number</td><td>Appearance width.</td></tr>
           <tr><td><code>height</code></td><td>number</td><td>Appearance height.</td></tr>
@@ -218,6 +237,7 @@ const signed = atick.embed(prepared, cms);`} />
           <tr><td><code>tsa_url</code></td><td>string</td><td>Timestamp authority URL.</td></tr>
           <tr><td><code>tsa_auth</code></td><td><code>[&quot;user&quot;, &quot;pass&quot;]</code></td><td>Basic-auth credentials for the TSA.</td></tr>
           <tr><td><code>ltv</code></td><td>bool</td><td>Add long-term validation material (DSS).</td></tr>
+          <tr><td><code>revocation</code></td><td>bool</td><td>On <code>cmsPfx</code>, embed RevocationInfoArchival (CRL/OCSP) inside the CMS itself.</td></tr>
           <tr><td><code>lta</code></td><td>bool</td><td>Add an archive DocTimeStamp (PAdES-B-LTA).</td></tr>
           <tr><td><code>contents_size</code></td><td>int</td><td>Size of the signature <code>/Contents</code> placeholder (default <code>16384</code>).</td></tr>
         </tbody>
@@ -240,8 +260,19 @@ const signed = atick.embed(prepared, cms);`} />
           <tr><td><code>verify_expiry</code></td><td>bool</td><td>Check certificate validity dates.</td></tr>
           <tr><td><code>verify_crl</code></td><td>bool</td><td>Check the CRL.</td></tr>
           <tr><td><code>verify_ocsp</code></td><td>bool</td><td>Check OCSP.</td></tr>
+          <tr><td><code>trusted_roots</code></td><td>array of SHA-1 hex strings</td><td>Extra pinned roots; the chain (built from AIA) must reach one of them.</td></tr>
         </tbody>
       </table>
+      <p>The four <code>verify*</code> flags and <code>trusted_roots</code> run <strong>before</strong>
+      any output is produced; a failed check refuses to sign and throws an <code>Error</code>.</p>
+      <Code lang="node" file="presign-checks.js" code={`const out = atick.signPfx(pdf, pfx, JSON.stringify({
+  password: "secret",
+  verify: true,            // umbrella: not expired + CRL + OCSP
+  verify_expiry: true,     // or enable the individual checks
+  verify_crl: true,
+  verify_ocsp: true,
+  trusted_roots: ["<root SHA-1>", "<another root SHA-1>"],
+}));`} />
 
       <h3>Document security</h3>
       <table>
