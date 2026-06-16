@@ -7,6 +7,7 @@ export function SiteNav() {
     { href: "/docs/python/", label: "Docs" },
     { href: "/#languages", label: "Languages" },
     { href: "/#features", label: "Features" },
+    { href: "/about/", label: "About" },
   ];
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">

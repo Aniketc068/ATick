@@ -83,13 +83,22 @@
 }
 
 /* Completely hide the Read the Docs addons flyout (the bottom-right
-   "On Read the Docs / Builds / Search / Hosted by Read the Docs" box)
-   and its injected notifications — independent of any RTD dashboard setting. */
+   "On Read the Docs / Builds / Search / Hosted by Read the Docs" box),
+   its injected notifications, and the EthicalAds placement — independent
+   of any RTD dashboard setting. */
 readthedocs-flyout,
 readthedocs-notification,
 #readthedocs-embed-flyout,
 .readthedocs-flyout,
-.rst-versions {
+.rst-versions,
+[data-ea-publisher],
+[data-ea-type],
+[data-ea-name],
+.ethical-ad,
+.ea-placement,
+.ea-content,
+.ea-stickybox-wrapper,
+readthedocs-ea {
   display: none !important;
   visibility: hidden !important;
 }

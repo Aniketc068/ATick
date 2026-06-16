@@ -23,8 +23,8 @@ const cols = [
     { href: "/license/", label: "Licensing terms" },
   ]},
   { title: "Company", links: [
-    { href: COMPANY_URL, label: "Axonate Tech", ext: true },
-    { href: "https://axonatetech.com/company/about-us", label: "About us", ext: true },
+    { href: "/about/", label: "About Axonate Tech" },
+    { href: COMPANY_URL, label: "axonatetech.com", ext: true },
     { href: "https://axonatetech.com/solutions/document-processing", label: "Other services", ext: true },
     { href: "https://www.linkedin.com/company/axonate-tech/", label: "LinkedIn", ext: true },
   ]},
