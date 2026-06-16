@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Github, ChevronDown } from "lucide-react";
+import { siPython, siOpenjdk, siDotnet, siNodedotjs, siPhp } from "simple-icons";
 
 const REPOS = [
-  { name: "Python", url: "https://github.com/Aniketc068/ATick-Python" },
-  { name: "Java", url: "https://github.com/Aniketc068/ATick-Java" },
-  { name: ".NET", url: "https://github.com/Aniketc068/ATick-DotNet" },
-  { name: "Node.js", url: "https://github.com/Aniketc068/ATick-Node" },
-  { name: "PHP", url: "https://github.com/Aniketc068/ATick-PHP" },
+  { name: "Python", url: "https://github.com/Aniketc068/ATick-Python", icon: siPython, color: "#4B8BBE" },
+  { name: "Java", url: "https://github.com/Aniketc068/ATick-Java", icon: siOpenjdk, color: "#E8E8E8" },
+  { name: ".NET", url: "https://github.com/Aniketc068/ATick-DotNet", icon: siDotnet, color: "#9B7DF6" },
+  { name: "Node.js", url: "https://github.com/Aniketc068/ATick-Node", icon: siNodedotjs, color: "#5FA04E" },
+  { name: "PHP", url: "https://github.com/Aniketc068/ATick-PHP", icon: siPhp, color: "#9AA0DC" },
 ];
 
 export function RepoMenu() {
@@ -34,7 +35,10 @@ export function RepoMenu() {
           {REPOS.map((r) => (
             <a key={r.name} href={r.url} target="_blank" rel="noopener noreferrer"
                className="flex items-center gap-2.5 px-3 py-2 text-sm text-foreground/85 transition-colors hover:bg-white/[0.06]">
-              <Github className="h-4 w-4 opacity-60" /> ATick for {r.name}
+              <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill={r.color} aria-hidden="true">
+                <path d={r.icon.path} />
+              </svg>
+              ATick for {r.name}
             </a>
           ))}
         </div>
