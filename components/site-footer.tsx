@@ -24,6 +24,7 @@ const cols = [
   ]},
   { title: "Company", links: [
     { href: "/about/", label: "About Axonate Tech" },
+    { href: "/compare/", label: "ATick vs pyHanko" },
     { href: COMPANY_URL, label: "axonatetech.com", ext: true },
     { href: "https://axonatetech.com/solutions/document-processing", label: "Other services", ext: true },
     { href: "https://www.linkedin.com/company/axonate-tech/", label: "LinkedIn", ext: true },

@@ -10,6 +10,8 @@ const SECTIONS = ["", "quickstart", "install", "signing", "pades", "appearance",
 export default function sitemap(): MetadataRoute.Sitemap {
   const urls: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE}/about/`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE}/compare/`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE}/license/`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE}/license/agpl/`, changeFrequency: "yearly", priority: 0.4 },
   ];
