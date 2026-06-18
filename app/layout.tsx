@@ -35,6 +35,7 @@ export const metadata: Metadata = {
   ],
   category: "technology",
   alternates: { canonical: "/" },
+  verification: { google: "b-zDeFOuoA4eyCite3y6i8wn1Tzyi6zjtOYVpbiERWE" },
   // icons are provided by the app/ convention (app/favicon.ico, app/icon.png,
   // app/apple-icon.png) — Next emits hashed, cache-busted <link> tags automatically.
   openGraph: {
