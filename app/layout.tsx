@@ -4,7 +4,7 @@ import "./globals.css";
 const SITE = "https://atick.readthedocs.io";
 const TITLE = "ATick — Sign PDFs with a green tick valid in Adobe (5 languages)";
 const DESC =
-  "ATick digitally signs PDFs the way Adobe Reader shows as valid — a green-tick verified signature — from Python, Java, .NET, Node.js and PHP. PAdES/CMS signing, RFC-3161 timestamps, LTV and PAdES-B-LTA, DocMDP certify (no-changes), encrypted output, PKCS#11 / USB token / HSM, Windows certificate store, DSC and Indian eSign, plus deferred / remote-key signing. One engine, the same API in every language.";
+  "Digitally sign PDFs with a green tick Adobe shows as valid — in Python, Java, .NET, Node.js & PHP. PAdES, timestamps, LTV. One engine, five languages.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

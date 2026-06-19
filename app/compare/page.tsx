@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 export const metadata: Metadata = {
   title: "ATick vs other PDF signing libraries (Python, Java, .NET, Node.js, PHP)",
   description:
-    "An accurate comparison of ATick with the leading PDF digital-signature libraries — pyHanko, endesive, iText, Apache PDFBox, IronPDF, Apryse, @signpdf, pdf-lib, SetaPDF-Signer, TCPDF. ATick is the only library with a current Adobe-valid green-tick appearance, one API across five languages, a built-in Windows certificate-store connector, and a free, batteries-included PAdES-B-LTA pipeline.",
+    "How ATick compares to pyHanko, endesive, iText, IronPDF, Apryse, @signpdf and SetaPDF — green tick, PAdES/LTV, Windows store, across five languages.",
   alternates: { canonical: "/compare/" },
 };
 

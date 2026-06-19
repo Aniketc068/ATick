@@ -9,7 +9,7 @@ const SUPPORT_EMAIL = "info@axonatetech.com";
 export const metadata: Metadata = {
   title: "Licensing",
   description:
-    "ATick is dual-licensed: free under the GNU AGPL-3.0 for personal, internal and open-source use; a paid commercial license is required to sell or ship it in a closed-source / commercial product.",
+    "ATick is dual-licensed: free under the GNU AGPL-3.0 for personal, internal and open-source use; a paid commercial license to sell or ship it.",
   alternates: { canonical: "/license/" },
 };
 

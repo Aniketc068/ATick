@@ -9,7 +9,7 @@ const SUPPORT_EMAIL = "info@axonatetech.com";
 export const metadata: Metadata = {
   title: "Commercial License",
   description:
-    "Buy a commercial license for ATick to sell, resell or ship it inside a closed-source / commercial product. Pricing per product, per seat or per revenue tier — contact Axonate Tech for a quote.",
+    "Buy a commercial license for ATick to sell, resell or ship it in a closed-source product. Pricing per product, seat or revenue — contact Axonate Tech.",
   alternates: { canonical: "/license/commercial/" },
 };
 

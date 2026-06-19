@@ -9,7 +9,7 @@ const EMAIL = "info@axonatetech.com";
 export const metadata: Metadata = {
   title: "About Axonate Tech",
   description:
-    "ATick is a product by Axonate Tech — an ISO 27001 (ISMS) and ISO 9001 certified provider of enterprise data annotation, AI training data and BPO services, trusted across 25+ countries with a 99.5% accuracy rate.",
+    "ATick is a product by Axonate Tech — an ISO 27001 & ISO 9001 certified data-annotation and document-processing company serving 25+ countries.",
   alternates: { canonical: "/about/" },
 };
 
