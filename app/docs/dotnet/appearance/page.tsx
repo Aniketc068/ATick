@@ -30,16 +30,16 @@ File.WriteAllBytes("signed.pdf", signed);`} />
       the box never overflows.</p>
 
       <h2>Date / time</h2>
-      <Code lang="dotnet" file="DateTime.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\"}");                       // current time (default)
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"date\\":\\"Signed on 10-Jun-2026\\"}");  // a fixed string
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"date\\":\\"\\"}");          // no date line`} />
+      <Code lang="dotnet" file="DateTime.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\"}");                       // current time (default)
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"date\\":\\"Signed on 10-Jun-2026\\"}");  // a fixed string
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"date\\":\\"\\"}");          // no date line`} />
 
       <h2>The left side</h2>
       <p>The <code>image</code> key controls what is drawn on the left of the appearance:</p>
 
-      <Code lang="dotnet" file="LeftSide.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\"}");                       // default: the ATick logo
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"image\\":\\"none\\"}");    // no logo
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"image\\":\\"cn\\"}");      // the CN as large text on the LEFT (Adobe-style)`} />
+      <Code lang="dotnet" file="LeftSide.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\"}");                       // default: the ATick logo
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"image\\":\\"none\\"}");    // no logo
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"image\\":\\"cn\\"}");      // the CN as large text on the LEFT (Adobe-style)`} />
 
       <table>
         <thead>
@@ -56,9 +56,9 @@ Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"image\\":\\"cn\\"}");      //
       <p>The mark sits centred in the appearance and tells the reader the signature&apos;s status at
       a glance:</p>
 
-      <Code lang="dotnet" file="Mark.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true}");    // the verified mark — Adobe paints it GREEN if valid+trusted, RED if invalid
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"always_check\\":true}");  // ATick's green-tick graphic as the base (Adobe still reds a bad signature)
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":false}");   // no mark — a plain signature`} />
+      <Code lang="dotnet" file="Mark.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true}");    // the verified mark — Adobe paints it GREEN if valid+trusted, RED if invalid
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"always_check\\":true}");  // ATick's green-tick graphic as the base (Adobe still reds a bad signature)
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":false}");   // no mark — a plain signature`} />
 
       <ul>
         <li><strong><code>&quot;green_tick&quot;:true</code></strong> — the classic validity mark
@@ -100,10 +100,10 @@ Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":false}");   // 
       <p>Colour the mark with a hex string, a CSS colour name, or an <code>[r, g, b]</code> array — or
       fill it with an axial gradient:</p>
 
-      <Code lang="dotnet" file="MarkColor.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_color\\":\\"#E53935\\"}");        // hex
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_color\\":\\"blue\\"}");           // CSS name
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_color\\":[255,140,0]}");        // RGB array
-Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_gradient\\":[\\"red\\",\\"orange\\",\\"yellow\\"]}");  // gradient`} />
+      <Code lang="dotnet" file="MarkColor.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true,\\"mark_color\\":\\"#E53935\\"}");        // hex
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true,\\"mark_color\\":\\"blue\\"}");           // CSS name
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true,\\"mark_color\\":[255,140,0]}");        // RGB array
+Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true,\\"mark_gradient\\":[\\"red\\",\\"orange\\",\\"yellow\\"]}");  // gradient`} />
 
       <p>Use <code>mark_scale</code> to resize the mark relative to the appearance box.</p>
 
@@ -112,7 +112,7 @@ Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_gr
       all optional — the defaults already produce a balanced box.</p>
 
       <Code lang="dotnet" file="FineTune.cs" code={`Atick.SignPfx(pdf, pfx,
-    "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,"
+    "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true,"
   + "\\"top_reserve\\":0.32,"   // reserve the top 32% of the box for the logo / mark
   + "\\"mark_scale\\":1.1,"     // make the mark 10% larger
   + "\\"mark_dx\\":4,"          // nudge the mark 4 pt to the right
@@ -140,7 +140,7 @@ Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_gr
       the line width in points:</p>
 
       <Code lang="dotnet" file="Border.cs" code={`Atick.SignPfx(pdf, pfx,
-    "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,"
+    "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true,"
   + "\\"border\\":true,"
   + "\\"border_color\\":[20,80,160],"  // RGB border colour
   + "\\"border_width\\":1.0}");        // line width in points`} />
@@ -167,11 +167,11 @@ Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"mark_gr
       at once with <code>placements</code>. Coordinates are PDF points as <code>[x1, y1, x2, y2]</code>.</p>
 
       <Code lang="dotnet" file="Position.cs" code={`Atick.SignPfx(pdf, pfx,
-    "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"page\\":1,\\"rect\\":[300,55,575,175]}");
+    "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true,\\"page\\":1,\\"rect\\":[300,55,575,175]}");
 
 // one stamp per entry: [page, [x1,y1,x2,y2]]
 Atick.SignPfx(pdf, pfx,
-    "{\\"cn\\":\\"Aniket\\",\\"green_tick\\":true,\\"placements\\":[[1,[300,55,575,175]],[2,[300,55,575,175]]]}");`} />
+    "{\\"cn\\":\\"Axonate Tech\\",\\"green_tick\\":true,\\"placements\\":[[1,[300,55,575,175]],[2,[300,55,575,175]]]}");`} />
 
       <p>You can also size the box directly with <code>width</code> and <code>height</code>.</p>
 
@@ -179,7 +179,7 @@ Atick.SignPfx(pdf, pfx,
       <p>A cryptographically valid signature that draws nothing on the page — pass an empty
       <code>placements</code> array:</p>
 
-      <Code lang="dotnet" file="Invisible.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"placements\\":[]}");   // empty placements`} />
+      <Code lang="dotnet" file="Invisible.cs" code={`Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"placements\\":[]}");   // empty placements`} />
 
       <h2>Other appearance options</h2>
       <table>
@@ -209,7 +209,7 @@ Atick.SignPfx(pdf, pfx,
       <p>Every failure throws <code>AtickException</code>:</p>
       <Code lang="dotnet" file="Errors.cs" code={`try
 {
-    Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Aniket\\",\\"image\\":\\"missing.png\\"}");
+    Atick.SignPfx(pdf, pfx, "{\\"cn\\":\\"Axonate Tech\\",\\"image\\":\\"missing.png\\"}");
 }
 catch (AtickException e)
 {

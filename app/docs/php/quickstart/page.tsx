@@ -34,7 +34,7 @@ require 'vendor/autoload.php';
 use Aniketc068\\ATick\\Atick;
 
 $signed = Atick::signPfx(file_get_contents("doc.pdf"), file_get_contents("my.pfx"),
-    json_encode(["password" => "••••", "cn" => "Aniket", "pades" => true, "page" => 1, "rect" => [300, 55, 575, 175]]));
+    json_encode(["password" => "••••", "cn" => "Axonate Tech", "pades" => true, "page" => 1, "rect" => [300, 55, 575, 175]]));
 file_put_contents("signed.pdf", $signed);`} />
 
       <h2>A minimal, invisible signature</h2>

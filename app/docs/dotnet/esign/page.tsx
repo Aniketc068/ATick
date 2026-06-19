@@ -36,7 +36,7 @@ using System.Security.Cryptography;`} />
 // options: cn, reason, placements / page+rect, field_name, pades, contents_size.
 // Leave room for the chain + revocation + timestamp that a pkcs7Pdf reply carries.
 var (prepared, bytesToSign) = Atick.Prepare(pdf,
-    "{\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Agreement\\",\\"pades\\":true,"
+    "{\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Agreement\\",\\"pades\\":true,"
   + "\\"page\\":1,\\"rect\\":[40,640,300,750],\\"contents_size\\":60000}");
 
 // The InputHash that goes into <InputHash> (hex).
@@ -104,7 +104,7 @@ File.WriteAllBytes("signed.pdf", signed);`} />
       </ul>
 
       <Code lang="dotnet" file="RemoteKey.cs" code={`var (prepared, bytesToSign) = Atick.Prepare(pdf,
-    "{\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Approved\\",\\"pades\\":true}");
+    "{\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Approved\\",\\"pades\\":true}");
 
 // Sign bytesToSign with your provider; return a detached CMS over those exact bytes.
 byte[] cms = SignWithMyProvider(bytesToSign);   // PKCS#11 token / HSM / Windows store
@@ -123,7 +123,7 @@ File.WriteAllBytes("signed.pdf", signed);`} />
 
       <Code lang="dotnet" file="Simulate.cs" code={`byte[] pfx = File.ReadAllBytes("signer.pfx");
 
-var (prepared, bytesToSign) = Atick.Prepare(pdf, "{\\"cn\\":\\"Aniket\\",\\"pades\\":true}");
+var (prepared, bytesToSign) = Atick.Prepare(pdf, "{\\"cn\\":\\"Axonate Tech\\",\\"pades\\":true}");
 byte[] cms  = Atick.CmsPfx(bytesToSign, pfx,
                    "{\\"password\\":\\"••••\\",\\"pades\\":true,\\"timestamp\\":true}");
 byte[] done = Atick.Embed(prepared, cms);

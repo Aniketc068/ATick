@@ -25,7 +25,7 @@ const pfx = fs.readFileSync("signer.pfx");
 
 const signed = atick.signPfx(pdf, pfx, JSON.stringify({
   password: "••••",
-  cn: "Aniket",
+  cn: "Axonate Tech",
   reason: "Approved",
   pades: true,
 }));
@@ -40,7 +40,7 @@ fs.writeFileSync("out.pdf", signed);`} />
 
 const signed = atick.signPfx(pdf, pem, JSON.stringify({
   password: "",
-  cn: "Aniket",
+  cn: "Axonate Tech",
   pades: true,
 }));`} />
       <blockquote>Because the format is auto-detected, the same <code>signPfx</code> call works for
@@ -55,7 +55,7 @@ const signed = atick.signPfx(pdf, pem, JSON.stringify({
       to sign, you produce the CMS signature with your own signer, and ATick embeds it.</p>
       <Code lang="node" file="deferred.js" code={`// Step 1 — prepare. Returns { prepared, bytesToSign }.
 const { prepared, bytesToSign } = atick.prepare(pdf, JSON.stringify({
-  cn: "Aniket",
+  cn: "Axonate Tech",
   reason: "Approved",
   pades: true,
   hash_algo: "sha256",
@@ -77,7 +77,7 @@ fs.writeFileSync("out.pdf", signed);`} />
       <p>If you have the key material in software (a <code>.pfx</code>/<code>.p12</code>/<code>.pem</code>),
       ATick can also build the CMS for you with <code>atick.cmsPfx</code>, then <code>atick.embed</code>:</p>
       <Code lang="node" file="cmspfx.js" code={`const { prepared, bytesToSign } = atick.prepare(pdf, JSON.stringify({
-  cn: "Aniket",
+  cn: "Axonate Tech",
   pades: true,
 }));
 
@@ -122,7 +122,7 @@ const signed = atick.embed(prepared, cms);`} />
       (<code>[[page, [x1, y1, x2, y2]], …]</code>).</p>
       <Code lang="node" file="appearance.js" code={`const signed = atick.signPfx(pdf, pfx, JSON.stringify({
   password: "••••",
-  cn: "Aniket",
+  cn: "Axonate Tech",
   reason: "Approved",
   show_mark: true,
   green_tick: true,
@@ -138,7 +138,7 @@ const signed = atick.embed(prepared, cms);`} />
       so it never collides.</p>
       <Code lang="node" file="multisig.js" code={`const v1 = atick.signPfx(pdf, pfx, JSON.stringify({
   password: "••••",
-  cn: "Aniket",
+  cn: "Axonate Tech",
   pades: true,
 })); // Atick_1
 

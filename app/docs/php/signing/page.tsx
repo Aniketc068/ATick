@@ -25,7 +25,7 @@ $pfx = file_get_contents("signer.pfx");
 
 $signed = Atick::signPfx($pdf, $pfx, [
     "password" => "••••",
-    "cn"       => "Aniket",
+    "cn"       => "Axonate Tech",
     "reason"   => "Approved",
     "pades"    => true,
 ]);
@@ -39,7 +39,7 @@ file_put_contents("out.pdf", $signed);`} />
 
 $signed = Atick::signPfx($pdf, $pem, [
     "password" => "",
-    "cn"       => "Aniket",
+    "cn"       => "Axonate Tech",
     "pades"    => true,
 ]);`} />
       <blockquote>Because the format is auto-detected, the same <code>signPfx</code> call works for <code>.pfx</code>, <code>.p12</code>, and <code>.pem</code>.
@@ -52,7 +52,7 @@ $signed = Atick::signPfx($pdf, $pem, [
       produce the CMS signature with your own signer, and ATick embeds it.</p>
       <Code lang="php" file="deferred.php" code={`// Step 1 — prepare. Returns [$prepared, $bytesToSign].
 [$prepared, $bytesToSign] = Atick::prepare($pdf, [
-    "cn"        => "Aniket",
+    "cn"        => "Axonate Tech",
     "reason"    => "Approved",
     "pades"     => true,
     "hash_algo" => "sha256",
@@ -72,7 +72,7 @@ file_put_contents("out.pdf", $signed);`} />
       <p>If you have the key material in software (a <code>.pfx</code>/<code>.p12</code>/<code>.pem</code>), ATick can also build the CMS for
       you with <code>Atick::cmsPfx</code>, then <code>Atick::embed</code>:</p>
       <Code lang="php" file="deferred.php" code={`[$prepared, $bytesToSign] = Atick::prepare($pdf, [
-    "cn"    => "Aniket",
+    "cn"    => "Axonate Tech",
     "pades" => true,
 ]);
 
@@ -113,7 +113,7 @@ $signed = Atick::embed($prepared, $cms);`} />
       <code> rect</code> (<code>[x1, y1, x2, y2]</code>), and <code>placements</code> (<code>[[page, [x1, y1, x2, y2]], …]</code>).</p>
       <Code lang="php" file="sign.php" code={`$signed = Atick::signPfx($pdf, $pfx, [
     "password"   => "••••",
-    "cn"         => "Aniket",
+    "cn"         => "Axonate Tech",
     "reason"     => "Approved",
     "show_mark"  => true,
     "green_tick" => true,
@@ -129,7 +129,7 @@ $signed = Atick::embed($prepared, $cms);`} />
       collides.</p>
       <Code lang="php" file="multi.php" code={`$v1 = Atick::signPfx($pdf, $pfx, [
     "password" => "••••",
-    "cn"       => "Aniket",
+    "cn"       => "Axonate Tech",
     "pades"    => true,
 ]); // Atick_1
 

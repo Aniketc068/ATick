@@ -22,7 +22,7 @@ import java.nio.file.*;`} />
 byte[] pfx = Files.readAllBytes(Path.of("signer.pfx"));
 
 byte[] signed = Atick.signPfx(pdf, pfx,
-    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Approved\\",\\"pades\\":true}");
+    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Approved\\",\\"pades\\":true}");
 
 Files.write(Path.of("out.pdf"), signed);`} />
 
@@ -33,7 +33,7 @@ Files.write(Path.of("out.pdf"), signed);`} />
       <Code lang="java" file="SignPem.java" code={`byte[] pem = Files.readAllBytes(Path.of("signer.pem"));
 
 byte[] signed = Atick.signPfx(pdf, pem,
-    "{\\"password\\":\\"\\",\\"cn\\":\\"Aniket\\",\\"pades\\":true}");`} />
+    "{\\"password\\":\\"\\",\\"cn\\":\\"Axonate Tech\\",\\"pades\\":true}");`} />
       <blockquote>Because the format is auto-detected, the same <code>signPfx</code> call works for
       <code> .pfx</code>, <code>.p12</code>, and <code>.pem</code>. Only the <code>password</code>
       differs: the PKCS#12 passphrase for <code>.pfx</code>/<code>.p12</code>, and
@@ -47,7 +47,7 @@ byte[] signed = Atick.signPfx(pdf, pem,
       <code> SunMSCAPI</code>, or a vendor provider), and ATick embeds it.</p>
       <Code lang="java" file="Deferred.java" code={`// Step 1 — prepare. Returns { prepared, bytesToSign }.
 byte[][] out = Atick.prepare(pdf,
-    "{\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Approved\\",\\"pades\\":true,\\"hash_algo\\":\\"sha256\\"}");
+    "{\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Approved\\",\\"pades\\":true,\\"hash_algo\\":\\"sha256\\"}");
 byte[] prepared    = out[0];
 byte[] bytesToSign = out[1];
 
@@ -67,7 +67,7 @@ Files.write(Path.of("out.pdf"), signed);`} />
       <p>If you have the key material in software (a <code>.pfx</code>/<code>.p12</code>/<code>.pem</code>),
       ATick can also build the CMS for you with <code>Atick.cmsPfx</code>, then
       <code> Atick.embed</code>:</p>
-      <Code lang="java" file="CmsPfx.java" code={`byte[][] out = Atick.prepare(pdf, "{\\"cn\\":\\"Aniket\\",\\"pades\\":true}");
+      <Code lang="java" file="CmsPfx.java" code={`byte[][] out = Atick.prepare(pdf, "{\\"cn\\":\\"Axonate Tech\\",\\"pades\\":true}");
 byte[] cms    = Atick.cmsPfx(out[1], pfx, "{\\"password\\":\\"••••\\",\\"pades\\":true}");
 byte[] signed = Atick.embed(out[0], cms);`} />
 
@@ -106,7 +106,7 @@ byte[] signed = Atick.embed(out[0], cms);`} />
       <code> page</code>, <code>rect</code> (<code>[x1,y1,x2,y2]</code>), and <code>placements</code>
       (<code>[[page,[x1,y1,x2,y2]], …]</code>).</p>
       <Code lang="java" file="Appearance.java" code={`byte[] signed = Atick.signPfx(pdf, pfx,
-    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Approved\\","
+    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Approved\\","
   + "\\"show_mark\\":true,\\"green_tick\\":true,\\"mark_color\\":\\"#E53935\\","
   + "\\"page\\":1,\\"rect\\":[36,36,236,96],\\"pades\\":true}");`} />
 
@@ -114,7 +114,7 @@ byte[] signed = Atick.embed(out[0], cms);`} />
       <p>ATick signs as an <strong>incremental update</strong>: existing signatures keep their byte
       ranges and stay valid. Just sign the already-signed PDF again — the field name is
       auto-uniquified so it never collides.</p>
-      <Code lang="java" file="MultiSign.java" code={`byte[] v1 = Atick.signPfx(pdf, pfx, "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket\\",\\"pades\\":true}"); // Atick_1
+      <Code lang="java" file="MultiSign.java" code={`byte[] v1 = Atick.signPfx(pdf, pfx, "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\",\\"pades\\":true}"); // Atick_1
 byte[] v2 = Atick.signPfx(v1,  pfx, "{\\"password\\":\\"••••\\",\\"cn\\":\\"Reviewer\\",\\"pades\\":true}"); // Atick_2`} />
       <p>The same holds for the deferred flow: run <code>Atick.prepare</code> → external CMS →
       <code> Atick.embed</code> on the already-signed bytes to add another signature.</p>

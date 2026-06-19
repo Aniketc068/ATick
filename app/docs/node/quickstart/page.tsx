@@ -30,7 +30,7 @@ fs.writeFileSync("signed.pdf", signed);`} />
 import { readFileSync, writeFileSync } from "fs";
 
 const signed = atick.signPfx(readFileSync("doc.pdf"), readFileSync("my.pfx"),
-  JSON.stringify({ password: "••••", cn: "Aniket", pades: true, page: 1, rect: [300, 55, 575, 175] }));
+  JSON.stringify({ password: "••••", cn: "Axonate Tech", pades: true, page: 1, rect: [300, 55, 575, 175] }));
 writeFileSync("signed.pdf", signed);`} />
 
       <h2>A minimal, invisible signature</h2>

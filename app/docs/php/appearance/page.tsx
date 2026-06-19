@@ -28,15 +28,15 @@ file_put_contents("signed.pdf", $signed);`} />
       <p>Long signer names <strong>wrap</strong> onto more lines instead of shrinking the font, so the box never overflows.</p>
 
       <h2>Date / time</h2>
-      <Code lang="php" file="date.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Aniket"]);                                  // current time (default)
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "date" => "Signed on 10-Jun-2026"]); // a fixed string
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "date" => ""]);                    // no date line`} />
+      <Code lang="php" file="date.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech"]);                                  // current time (default)
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "date" => "Signed on 10-Jun-2026"]); // a fixed string
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "date" => ""]);                    // no date line`} />
 
       <h2>The left side</h2>
       <p>The <code>image</code> key controls what is drawn on the left of the appearance:</p>
-      <Code lang="php" file="image.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Aniket"]);                    // default: the ATick logo
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "image" => "none"]); // no logo
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "image" => "cn"]);   // the CN as large text on the LEFT (Adobe-style)`} />
+      <Code lang="php" file="image.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech"]);                    // default: the ATick logo
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "image" => "none"]); // no logo
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "image" => "cn"]);   // the CN as large text on the LEFT (Adobe-style)`} />
       <table>
         <thead>
           <tr><th><code>image</code> value</th><th>Result</th></tr>
@@ -50,9 +50,9 @@ Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "image" => "cn"]);   // the CN as 
 
       <h2>The validity mark — ATick&apos;s signature look</h2>
       <p>The mark sits centred in the appearance and tells the reader the signature&apos;s status at a glance:</p>
-      <Code lang="php" file="mark.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => true]);    // the "?" mark — Adobe paints it GREEN if valid+trusted, RED if invalid
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "always_check" => true]);  // ATick's green-tick graphic as the base (Adobe still reds a bad signature)
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => false]);   // no mark — a plain signature`} />
+      <Code lang="php" file="mark.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "green_tick" => true]);    // the "?" mark — Adobe paints it GREEN if valid+trusted, RED if invalid
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "always_check" => true]);  // ATick's green-tick graphic as the base (Adobe still reds a bad signature)
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "green_tick" => false]);   // no mark — a plain signature`} />
       <ul>
         <li><strong><code>green_tick =&gt; true</code></strong> — the classic validity mark: a <code>?</code> that Adobe Acrobat repaints <strong>green</strong>
         for a valid, trusted signature and <strong>red</strong> for a broken one.</li>
@@ -81,10 +81,10 @@ Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => false]);   // no m
       <h3>Colouring the mark</h3>
       <p>Colour the mark with a hex string, a CSS colour name, or an <code>[r, g, b]</code> array — or fill it with an
       axial gradient:</p>
-      <Code lang="php" file="color.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => true, "mark_color" => "#E53935"]);        // hex
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => true, "mark_color" => "blue"]);           // CSS name
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => true, "mark_color" => [255, 140, 0]]);    // RGB array
-Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => true, "mark_gradient" => ["red", "orange", "yellow"]]);  // gradient`} />
+      <Code lang="php" file="color.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "green_tick" => true, "mark_color" => "#E53935"]);        // hex
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "green_tick" => true, "mark_color" => "blue"]);           // CSS name
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "green_tick" => true, "mark_color" => [255, 140, 0]]);    // RGB array
+Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "green_tick" => true, "mark_gradient" => ["red", "orange", "yellow"]]);  // gradient`} />
       <p>Use <code>mark_scale</code> to resize the mark relative to the appearance box.</p>
 
       <h2>Distinguished name</h2>
@@ -107,12 +107,12 @@ Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "green_tick" => true, "mark_gradie
       <p>Place the appearance with <code>page</code> + <code>rect</code>, or stamp several positions at once with <code>placements</code>.
       Coordinates are PDF points as <code>[x1, y1, x2, y2]</code>.</p>
       <Code lang="php" file="position.php" code={`Atick::signPfx($pdf, $pfx, [
-    "cn" => "Aniket", "green_tick" => true, "page" => 1, "rect" => [300, 55, 575, 175],
+    "cn" => "Axonate Tech", "green_tick" => true, "page" => 1, "rect" => [300, 55, 575, 175],
 ]);
 
 // one stamp per entry: [page, [x1,y1,x2,y2]]
 Atick::signPfx($pdf, $pfx, [
-    "cn" => "Aniket", "green_tick" => true,
+    "cn" => "Axonate Tech", "green_tick" => true,
     "placements" => [[1, [300, 55, 575, 175]], [2, [300, 55, 575, 175]]],
 ]);`} />
       <p>You can also size the box directly with <code>width</code> and <code>height</code>.</p>
@@ -121,7 +121,7 @@ Atick::signPfx($pdf, $pfx, [
       <p>Once the box is placed you can nudge the mark, the logo region, and the text independently —
       useful for matching an exact house style without recomputing the rectangle.</p>
       <Code lang="php" file="tune.php" code={`Atick::signPfx($pdf, $pfx, [
-    "cn"          => "Aniket",
+    "cn"          => "Axonate Tech",
     "green_tick"  => true,
     "top_reserve" => 0.32,        // fraction of the box height reserved at the top for the logo / mark
     "mark_scale"  => 1.15,        // scale the mark up (1.0 = default)
@@ -147,7 +147,7 @@ Atick::signPfx($pdf, $pfx, [
       <h3>Border colour &amp; width</h3>
       <p>With <code>border =&gt; true</code> you can set the border&apos;s colour and thickness:</p>
       <Code lang="php" file="border.php" code={`Atick::signPfx($pdf, $pfx, [
-    "cn"           => "Aniket",
+    "cn"           => "Axonate Tech",
     "border"       => true,
     "border_color" => [0, 102, 204],   // [r, g, b] (0–255)
     "border_width" => 1.0,             // line width in PDF points
@@ -166,7 +166,7 @@ Atick::signPfx($pdf, $pfx, [
       <h2>Invisible signature</h2>
       <p>A cryptographically valid signature that draws nothing on the page — pass an empty <code>placements</code>
       array:</p>
-      <Code lang="php" file="invisible.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "placements" => []]);   // empty placements`} />
+      <Code lang="php" file="invisible.php" code={`Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "placements" => []]);   // empty placements`} />
 
       <h2>Other appearance options</h2>
       <table>
@@ -193,7 +193,7 @@ Atick::signPfx($pdf, $pfx, [
       <h2>Errors</h2>
       <p>Every failure throws an <code>Aniketc068\ATick\AtickException</code>:</p>
       <Code lang="php" file="errors.php" code={`try {
-    Atick::signPfx($pdf, $pfx, ["cn" => "Aniket", "image" => "missing.png"]);
+    Atick::signPfx($pdf, $pfx, ["cn" => "Axonate Tech", "image" => "missing.png"]);
 } catch (\\Aniketc068\\ATick\\AtickException $e) {
     echo "signing failed: " . $e->getMessage();
 }`} />

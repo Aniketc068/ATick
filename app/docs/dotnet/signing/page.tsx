@@ -22,7 +22,7 @@ using System.IO;`} />
 byte[] pfx = File.ReadAllBytes("signer.pfx");
 
 byte[] signed = Atick.SignPfx(pdf, pfx,
-    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Approved\\",\\"pades\\":true}");
+    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Approved\\",\\"pades\\":true}");
 
 File.WriteAllBytes("out.pdf", signed);`} />
 
@@ -34,7 +34,7 @@ File.WriteAllBytes("out.pdf", signed);`} />
       <Code lang="dotnet" file="SignPem.cs" code={`byte[] pem = File.ReadAllBytes("signer.pem");
 
 byte[] signed = Atick.SignPfx(pdf, pem,
-    "{\\"password\\":\\"\\",\\"cn\\":\\"Aniket\\",\\"pades\\":true}");`} />
+    "{\\"password\\":\\"\\",\\"cn\\":\\"Axonate Tech\\",\\"pades\\":true}");`} />
 
       <blockquote>Because the format is auto-detected, the same <code>SignPfx</code> call works for
       <code>.pfx</code>, <code>.p12</code>, and <code>.pem</code>. Only the <code>password</code>
@@ -50,7 +50,7 @@ byte[] signed = Atick.SignPfx(pdf, pem,
 
       <Code lang="dotnet" file="Deferred.cs" code={`// Step 1 — prepare. Returns a value tuple (Prepared, BytesToSign).
 var (prepared, bytesToSign) = Atick.Prepare(pdf,
-    "{\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Approved\\",\\"pades\\":true,\\"hash_algo\\":\\"sha256\\"}");
+    "{\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Approved\\",\\"pades\\":true,\\"hash_algo\\":\\"sha256\\"}");
 
 // Step 2 — produce a CMS signature with your own provider.
 //   Sign bytesToSign using the token / smart-card / HSM / Windows-store key.
@@ -69,7 +69,7 @@ File.WriteAllBytes("out.pdf", signed);`} />
       <p>If you have the key material in software (a <code>.pfx</code>/<code>.p12</code>/<code>.pem</code>),
       ATick can also build the CMS for you with <code>Atick.CmsPfx</code>, then <code>Atick.Embed</code>:</p>
 
-      <Code lang="dotnet" file="CmsPfx.cs" code={`var (prepared, bytesToSign) = Atick.Prepare(pdf, "{\\"cn\\":\\"Aniket\\",\\"pades\\":true}");
+      <Code lang="dotnet" file="CmsPfx.cs" code={`var (prepared, bytesToSign) = Atick.Prepare(pdf, "{\\"cn\\":\\"Axonate Tech\\",\\"pades\\":true}");
 byte[] cms    = Atick.CmsPfx(bytesToSign, pfx, "{\\"password\\":\\"••••\\",\\"pades\\":true}");
 byte[] signed = Atick.Embed(prepared, cms);`} />
 
@@ -110,7 +110,7 @@ byte[] signed = Atick.Embed(prepared, cms);`} />
       (<code>[[page,[x1,y1,x2,y2]], …]</code>).</p>
 
       <Code lang="dotnet" file="Appearance.cs" code={`byte[] signed = Atick.SignPfx(pdf, pfx,
-    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Approved\\","
+    "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Approved\\","
   + "\\"show_mark\\":true,\\"green_tick\\":true,\\"mark_color\\":\\"#E53935\\","
   + "\\"page\\":1,\\"rect\\":[36,36,236,96],\\"pades\\":true}");`} />
 
@@ -119,7 +119,7 @@ byte[] signed = Atick.Embed(prepared, cms);`} />
       ranges and stay valid. Just sign the already-signed PDF again — the field name is
       auto-uniquified so it never collides.</p>
 
-      <Code lang="dotnet" file="MultiSign.cs" code={`byte[] v1 = Atick.SignPfx(pdf, pfx, "{\\"password\\":\\"••••\\",\\"cn\\":\\"Aniket\\",\\"pades\\":true}");   // Atick_1
+      <Code lang="dotnet" file="MultiSign.cs" code={`byte[] v1 = Atick.SignPfx(pdf, pfx, "{\\"password\\":\\"••••\\",\\"cn\\":\\"Axonate Tech\\",\\"pades\\":true}");   // Atick_1
 byte[] v2 = Atick.SignPfx(v1,  pfx, "{\\"password\\":\\"••••\\",\\"cn\\":\\"Reviewer\\",\\"pades\\":true}"); // Atick_2`} />
 
       <p>The same holds for the deferred flow: run <code>Atick.Prepare</code> → external CMS →

@@ -29,15 +29,15 @@ fs.writeFileSync("signed.pdf", signed);`} />
       box never overflows.</p>
 
       <h2>Date / time</h2>
-      <Code lang="node" file="date.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket" }));                              // current time (default)
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", date: "Signed on 10-Jun-2026" })); // a fixed string
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", date: "" }));                    // no date line`} />
+      <Code lang="node" file="date.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech" }));                              // current time (default)
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", date: "Signed on 10-Jun-2026" })); // a fixed string
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", date: "" }));                    // no date line`} />
 
       <h2>The left side</h2>
       <p>The <code>image</code> key controls what is drawn on the left of the appearance:</p>
-      <Code lang="node" file="left.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket" }));                  // default: the ATick logo
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", image: "none" }));   // no logo
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", image: "cn" }));     // the CN as large text on the LEFT (Adobe-style)`} />
+      <Code lang="node" file="left.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech" }));                  // default: the ATick logo
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", image: "none" }));   // no logo
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", image: "cn" }));     // the CN as large text on the LEFT (Adobe-style)`} />
       <table>
         <thead><tr><th><code>image</code> value</th><th>Result</th></tr></thead>
         <tbody>
@@ -50,9 +50,9 @@ atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", image: "cn" }));     // t
       <h2>The validity mark — ATick&apos;s signature look</h2>
       <p>The mark sits centred in the appearance and tells the reader the signature&apos;s status at a
       glance:</p>
-      <Code lang="node" file="mark.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: true }));    // the "?" mark — Adobe paints it GREEN if valid+trusted, RED if invalid
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", always_check: true }));  // ATick's green-tick graphic as the base (Adobe still reds a bad signature)
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: false }));   // no mark — a plain signature`} />
+      <Code lang="node" file="mark.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", green_tick: true }));    // the "?" mark — Adobe paints it GREEN if valid+trusted, RED if invalid
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", always_check: true }));  // ATick's green-tick graphic as the base (Adobe still reds a bad signature)
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", green_tick: false }));   // no mark — a plain signature`} />
       <ul>
         <li><strong><code>green_tick: true</code></strong> — the classic validity mark: a <code>?</code> that Adobe Acrobat repaints <strong>green</strong> for a valid, trusted signature and <strong>red</strong> for a broken one.</li>
         <li><strong><code>always_check: true</code></strong> — uses ATick&apos;s own green-tick graphic as the base, so the tick shows in every viewer; Adobe still overlays a red mark if the signature is actually invalid.</li>
@@ -82,10 +82,10 @@ atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: false }));   
       <h3>Colouring the mark</h3>
       <p>Colour the mark with a hex string, a CSS colour name, or an <code>[r, g, b]</code> array — or
       fill it with an axial gradient:</p>
-      <Code lang="node" file="mark-color.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: true, mark_color: "#E53935" }));        // hex
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: true, mark_color: "blue" }));           // CSS name
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: true, mark_color: [255, 140, 0] }));    // RGB array
-atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: true, mark_gradient: ["red", "orange", "yellow"] }));  // gradient`} />
+      <Code lang="node" file="mark-color.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", green_tick: true, mark_color: "#E53935" }));        // hex
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", green_tick: true, mark_color: "blue" }));           // CSS name
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", green_tick: true, mark_color: [255, 140, 0] }));    // RGB array
+atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", green_tick: true, mark_gradient: ["red", "orange", "yellow"] }));  // gradient`} />
       <p>Use <code>mark_scale</code> to resize the mark relative to the appearance box.</p>
 
       <h2>Distinguished name</h2>
@@ -110,12 +110,12 @@ atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", green_tick: true, mark_gr
       <p>Place the appearance with <code>page</code> + <code>rect</code>, or stamp several positions at
       once with <code>placements</code>. Coordinates are PDF points as <code>[x1, y1, x2, y2]</code>.</p>
       <Code lang="node" file="position.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({
-  cn: "Aniket", green_tick: true, page: 1, rect: [300, 55, 575, 175],
+  cn: "Axonate Tech", green_tick: true, page: 1, rect: [300, 55, 575, 175],
 }));
 
 // one stamp per entry: [page, [x1,y1,x2,y2]]
 atick.signPfx(pdf, pfx, JSON.stringify({
-  cn: "Aniket", green_tick: true,
+  cn: "Axonate Tech", green_tick: true,
   placements: [[1, [300, 55, 575, 175]], [2, [300, 55, 575, 175]]],
 }));`} />
       <p>You can also size the box directly with <code>width</code> and <code>height</code>.</p>
@@ -124,7 +124,7 @@ atick.signPfx(pdf, pfx, JSON.stringify({
       <p>When the default placement is close but not exact, nudge the pieces individually instead of
       redesigning the box. All offsets are in PDF points unless noted.</p>
       <Code lang="node" file="fine-tune.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({
-  cn: "Aniket", green_tick: true,
+  cn: "Axonate Tech", green_tick: true,
   top_reserve: 0.32,   // reserve the top 32% of the box for the logo / mark
   mark_scale: 1.2,     // make the mark 20% larger
   mark_dx: 4,          // nudge the mark right
@@ -141,7 +141,7 @@ atick.signPfx(pdf, pfx, JSON.stringify({
       <h3>Border colour &amp; width</h3>
       <p>With <code>border: true</code>, set the border colour and line width:</p>
       <Code lang="node" file="border.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({
-  cn: "Aniket", green_tick: true,
+  cn: "Axonate Tech", green_tick: true,
   border: true,
   border_color: [33, 150, 243],   // [r, g, b] (also accepts hex or a CSS name)
   border_width: 1.0,              // line width in PDF points
@@ -154,7 +154,7 @@ atick.signPfx(pdf, pfx, JSON.stringify({
       <h2>Invisible signature</h2>
       <p>A cryptographically valid signature that draws nothing on the page — pass an empty
       <code>placements</code> array:</p>
-      <Code lang="node" file="invisible.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", placements: [] }));   // empty placements`} />
+      <Code lang="node" file="invisible.js" code={`atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", placements: [] }));   // empty placements`} />
 
       <h2>Other appearance options</h2>
       <table>
@@ -180,7 +180,7 @@ atick.signPfx(pdf, pfx, JSON.stringify({
       <h2>Errors</h2>
       <p>Every failure throws an <code>Error</code>:</p>
       <Code lang="node" file="errors.js" code={`try {
-  atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Aniket", image: "missing.png" }));
+  atick.signPfx(pdf, pfx, JSON.stringify({ cn: "Axonate Tech", image: "missing.png" }));
 } catch (err) {
   console.log("signing failed: " + err.message);
 }`} />

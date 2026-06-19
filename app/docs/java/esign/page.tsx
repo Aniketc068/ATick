@@ -32,7 +32,7 @@ import java.security.MessageDigest;`} />
 // options: cn, reason, placements / page+rect, field_name, pades, contents_size.
 // Leave room for the chain + revocation + timestamp that a pkcs7Pdf reply carries.
 byte[][] pr = Atick.prepare(pdf,
-    "{\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Agreement\\",\\"pades\\":true,"
+    "{\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Agreement\\",\\"pades\\":true,"
   + "\\"page\\":1,\\"rect\\":[40,640,300,750],\\"contents_size\\":60000}");
 
 byte[] prepared    = pr[0];
@@ -96,7 +96,7 @@ Files.write(Path.of("signed.pdf"), signed);`} />
         vendor&apos;s PKCS#11 provider).</li>
         <li><strong>Windows certificate store</strong> — <code>SunMSCAPI</code>.</li>
       </ul>
-      <Code lang="java" file="RemoteKey.java" code={`byte[][] pr = Atick.prepare(pdf, "{\\"cn\\":\\"Aniket\\",\\"reason\\":\\"Approved\\",\\"pades\\":true}");
+      <Code lang="java" file="RemoteKey.java" code={`byte[][] pr = Atick.prepare(pdf, "{\\"cn\\":\\"Axonate Tech\\",\\"reason\\":\\"Approved\\",\\"pades\\":true}");
 
 // Sign pr[1] with your JCA provider; return a detached CMS over those exact bytes.
 byte[] cms = signWithMyProvider(pr[1]);   // SunPKCS11 / SunMSCAPI / vendor provider
@@ -113,7 +113,7 @@ Files.write(Path.of("signed.pdf"), signed);`} />
       a <code>pkcs7Pdf</code>-style CMS over <code>pr[1]</code>:</p>
       <Code lang="java" file="Simulate.java" code={`byte[] pfx = Files.readAllBytes(Path.of("signer.pfx"));
 
-byte[][] pr   = Atick.prepare(pdf, "{\\"cn\\":\\"Aniket\\",\\"pades\\":true}");
+byte[][] pr   = Atick.prepare(pdf, "{\\"cn\\":\\"Axonate Tech\\",\\"pades\\":true}");
 byte[]   cms  = Atick.cmsPfx(pr[1], pfx,
                    "{\\"password\\":\\"••••\\",\\"pades\\":true,\\"timestamp\\":true}");
 byte[]   done = Atick.embed(pr[0], cms);
